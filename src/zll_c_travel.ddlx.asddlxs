@@ -1,0 +1,55 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeNamePlural: 'Mitarbeiter',
+  typeName: 'Mitarbeiter',
+  title.value: 'Nachname',
+  description.value: 'Vorname'
+}
+
+annotate view ZLL_C_Mitarbeiter  
+    with 
+{
+    
+ 
+  @UI.facet:
+  [
+    { position: 10, targetQualifier: 'MitarbeiterDetails', label: 'Mitarbeiter Details', type: #FIELDGROUP_REFERENCE },
+    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+  ]
+
+ 
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+  ID;
+
+  @UI.lineItem: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'TravelDetails' }]
+  Mitarbeiternummer;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'TravelDetails' }]
+  Vorname;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'TravelDetails' }]
+  Nachname;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'TravelDetails' }]
+  Eintrittsdatum;
+
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
+  CreatedBy;
+
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+  CreatedAt;
+
+  @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+  LastChangedBy;
+
+  @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
+  LastChangedAt;
+    
+}
