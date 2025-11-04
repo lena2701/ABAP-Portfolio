@@ -5,7 +5,7 @@
 define root view entity ZLL_C_Mitarbeiter
   as select from ZLL_R_Mitarbeiter
 {
-  key ID,
+  key MitarbeiterUuid,
       Mitarbeiternummer,
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.7
@@ -19,4 +19,5 @@ define root view entity ZLL_C_Mitarbeiter
       CreatedAt,
       LastChangedBy,
       LastChangedAt
+      
 }

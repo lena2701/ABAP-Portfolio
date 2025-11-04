@@ -1,7 +1,7 @@
 @Metadata.layer: #CUSTOMER
 @UI.headerInfo:
 {
-  typeNamePlural: 'Mitarbeiter',
+  typeNamePlural: 'Mitarbeitende',
   typeName: 'Mitarbeiter',
   title.value: 'Nachname',
   description.value: 'Vorname'
