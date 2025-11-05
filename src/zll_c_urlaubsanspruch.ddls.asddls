@@ -1,10 +1,18 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'BO Projection View Urlaubsanspruch'
-define view entity ZLL_C_Urlaubsanspruch as select from ZLL_R_Urlaubsanspruch
+@Metadata.allowExtensions: true
+
+define view entity ZLL_C_Urlaubsanspruch as projection on ZLL_R_Urlaubsanspruch
 {
     key UrlaubsanspruchUuid,
     MitarbeiterUuid,
+    @EndUserText.label: 'Jahr'
     Jahr,
-    Urlaubstage
+    @EndUserText.label: 'Urlaubstage'
+    Urlaubstage,
+    
+    _Mitarbeiter : redirected to parent ZLL_C_Mitarbeiter
+    
+    
     
 }

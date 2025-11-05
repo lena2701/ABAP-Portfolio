@@ -7,20 +7,21 @@
   description.value: 'Vorname'
 }
 
-annotate view ZLL_C_Mitarbeiter  
-    with 
+annotate view ZLL_C_Mitarbeiter with
 {
-    
- 
+
+
   @UI.facet:
   [
     { position: 10, targetQualifier: 'MitarbeiterDetails', label: 'Mitarbeiter Details', type: #FIELDGROUP_REFERENCE },
-    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE },
+    { position: 30, targetElement: '_Urlaubsanspruch', label: 'Urlaubsansprüche', type: #LINEITEM_REFERENCE },
+    { position: 40, targetElement: '_Urlaubsantrag', label: 'Urlaubsanträge', type: #LINEITEM_REFERENCE }
   ]
 
- 
+
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
-  ID;
+  MitarbeiterUuid;
 
   @UI.lineItem: [{ position: 10 }]
   @UI.selectionField: [{ position: 10 }]
@@ -51,5 +52,5 @@ annotate view ZLL_C_Mitarbeiter
 
   @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
   LastChangedAt;
-    
+
 }

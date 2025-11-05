@@ -1,0 +1,48 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeName: 'Urlaubsantrag',
+  typeNamePlural: 'Urlaubsanträge',
+  title.value: 'Startdatum',
+  description.value: 'Status'
+}
+annotate view ZLL_C_Urlaubsantrag
+    with 
+{
+    @UI.facet:
+  [
+    { position: 10, targetQualifier: 'AntragsDetails', label: 'Urlaubsantrag Details', type: #FIELDGROUP_REFERENCE },
+    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE }
+  ]
+
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+  UrlaubsantragUuid;
+
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
+  AntragstellerUuid;
+
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+  GenehmigenderUuid;
+  
+  @UI.lineItem: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'BookingDetails' }]
+  Startdatum;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'BookingDetails' }]
+  Enddatum;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'BookingDetails' }]
+  Urlaubstage;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'BookingDetails' }]
+  Kommentar;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'BookingDetails' }]
+  Status;
+
+    
+}

@@ -1,0 +1,30 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeName: 'Urlaubsanspruch',
+  typeNamePlural: 'Urlaubsansprüche',
+  title.value: 'Jahr',
+  description.value: 'Urlaubstage'
+}
+annotate view ZLL_C_Urlaubsanspruch with
+{
+  @UI.facet:
+  [
+  { position: 10, targetQualifier: 'AnspruchDetais', label: 'Anspruch Details', type: #FIELDGROUP_REFERENCE },
+  { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+  ]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+  UrlaubsanspruchUuid;
+
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
+  MitarbeiterUuid;
+  
+  @UI.lineItem: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AnspruchDetails' }]
+  Jahr;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AnspruchDetails' }]
+  Urlaubstage;
+
+}

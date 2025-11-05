@@ -32,7 +32,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     mitarbeiter-mitarbeiternummer = '1'.
     mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     hans_uuid = mitarbeiter-mitarbeiter_uuid.
-    mitarbeiter-mandant = sy-mandt.
+    mitarbeiter-client = sy-mandt.
     mitarbeiter-vorname = 'Hans'.
     mitarbeiter-nachname = 'Meier'.
     mitarbeiter-eintrittsdatum = '20000501'.
@@ -41,14 +41,14 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     APPEND mitarbeiter TO mitarbeitende.
 
     "Urlaubsanspruch erstellen
-    urlaubsanspruch-mandant = sy-mandt.
+    urlaubsanspruch-client = sy-mandt.
     urlaubsanspruch-mitarbeiter_uuid = hans_uuid.
     urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsanspruch-jahr = '2022'.
     urlaubsanspruch-urlaubstage = '30'.
     APPEND urlaubsanspruch TO urlaubsansprueche.
 
-    urlaubsanspruch-mandant = sy-mandt.
+    urlaubsanspruch-client = sy-mandt.
     urlaubsanspruch-mitarbeiter_uuid = hans_uuid.
     urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsanspruch-jahr = '2023'.
@@ -59,7 +59,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     mitarbeiter-mitarbeiternummer = '2'.
     mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     lisa_uuid = mitarbeiter-mitarbeiter_uuid.
-    mitarbeiter-mandant = sy-mandt.
+    mitarbeiter-client = sy-mandt.
     mitarbeiter-vorname = 'Lisa'.
     mitarbeiter-nachname = 'Müller'.
     mitarbeiter-eintrittsdatum = '20100701'.
@@ -79,7 +79,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     mitarbeiter-mitarbeiternummer = '3'.
     mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     petra_uuid = mitarbeiter-mitarbeiter_uuid.
-    mitarbeiter-mandant = sy-mandt.
+    mitarbeiter-client = sy-mandt.
     mitarbeiter-vorname = 'Petra'.
     mitarbeiter-nachname = 'Schmid'.
     mitarbeiter-eintrittsdatum = '20231001'.
@@ -88,7 +88,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     APPEND mitarbeiter TO mitarbeitende.
 
     "Urlaubsanspruch erstellen
-    urlaubsanspruch-mandant = sy-mandt.
+    urlaubsanspruch-client = sy-mandt.
     urlaubsanspruch-mitarbeiter_uuid =  petra_uuid.
     urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsanspruch-jahr = '2023'.
@@ -96,7 +96,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     APPEND urlaubsanspruch TO urlaubsansprueche.
 
     "Urlaubsantrag erstellen
-    urlaubsantrag-mandant = sy-mandt.
+    urlaubsantrag-client = sy-mandt.
     urlaubsantrag-urlaubsantrag_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsantrag-antragsteller_uuid = hans_uuid.
     urlaubsantrag-genehmigender_uuid = lisa_uuid.
@@ -107,7 +107,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     urlaubsantrag-status = 'G'.
     APPEND urlaubsantrag TO urlaubsantraege.
 
-    urlaubsantrag-mandant = sy-mandt.
+    urlaubsantrag-client = sy-mandt.
     urlaubsantrag-urlaubsantrag_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsantrag-antragsteller_uuid = hans_uuid.
     urlaubsantrag-genehmigender_uuid = lisa_uuid.
@@ -118,7 +118,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     urlaubsantrag-status = 'A'.
     APPEND urlaubsantrag TO urlaubsantraege.
 
-    urlaubsantrag-mandant = sy-mandt.
+    urlaubsantrag-client = sy-mandt.
     urlaubsantrag-urlaubsantrag_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsantrag-antragsteller_uuid = hans_uuid.
     urlaubsantrag-genehmigender_uuid = lisa_uuid.
@@ -129,7 +129,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     urlaubsantrag-status = 'G'.
     APPEND urlaubsantrag TO urlaubsantraege.
 
-    urlaubsantrag-mandant = sy-mandt.
+    urlaubsantrag-client = sy-mandt.
     urlaubsantrag-urlaubsantrag_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsantrag-antragsteller_uuid = hans_uuid.
     urlaubsantrag-genehmigender_uuid = lisa_uuid.
@@ -140,7 +140,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     urlaubsantrag-status = 'G'.
     APPEND urlaubsantrag TO urlaubsantraege.
 
-    urlaubsantrag-mandant = sy-mandt.
+    urlaubsantrag-client = sy-mandt.
     urlaubsantrag-urlaubsantrag_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsantrag-antragsteller_uuid = hans_uuid.
     urlaubsantrag-genehmigender_uuid = lisa_uuid.
@@ -151,7 +151,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     urlaubsantrag-status = 'B'.
     APPEND urlaubsantrag TO urlaubsantraege.
 
-    urlaubsantrag-mandant = sy-mandt.
+    urlaubsantrag-client = sy-mandt.
     urlaubsantrag-urlaubsantrag_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsantrag-antragsteller_uuid = petra_uuid.
     urlaubsantrag-genehmigender_uuid = hans_uuid.

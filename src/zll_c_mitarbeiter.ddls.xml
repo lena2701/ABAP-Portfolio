@@ -6,7 +6,7 @@
     <DDLNAME>ZLL_C_MITARBEITER</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DDTEXT>BO Projection View Mitarbeiter</DDTEXT>
-    <SOURCE_TYPE>W</SOURCE_TYPE>
+    <SOURCE_TYPE>P</SOURCE_TYPE>
    </DDLS>
   </asx:values>
  </asx:abap>
