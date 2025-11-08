@@ -18,7 +18,8 @@ define view entity ZLL_C_Urlaubsantrag as projection on ZLL_R_Urlaubsantrag
     @EndUserText.label: 'Status'
     Status,
     
-    _Genehmigender : redirected to parent ZLL_C_Mitarbeiter,
-    _Antragsteller : redirected to  ZLL_C_Mitarbeiter
+     _Antragsteller : redirected to parent ZLL_C_Mitarbeiter,
+    _Genehmigender : redirected to ZLL_C_Mitarbeiter
+
     
 }

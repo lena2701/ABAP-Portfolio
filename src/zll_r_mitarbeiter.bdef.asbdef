@@ -1,0 +1,86 @@
+managed implementation in class zbp_ll_r_mitarbeiter unique;
+strict ( 2 );
+
+define behavior for ZLL_R_Mitarbeiter alias Mitarbeiter
+persistent table zll_mitarbeiter
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+
+  create;
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) MitarbeiterUuid;
+
+  association _Urlaubsanspruch { create; }
+  association _Urlaubsantrag { create; }
+
+  mapping for zll_mitarbeiter corresponding
+    {
+      MitarbeiterUuid   = mitarbeiter_uuid;
+      Mitarbeiternummer = mitarbeiternummer;
+      Vorname           = vorname;
+      Nachname          = nachname;
+      Eintrittsdatum    = eintrittsdatum;
+      CreatedBy         = created_by;
+      CreatedAt         = created_at;
+      LastChangedBy     = last_changed_by;
+      LastChangedAt     = last_changed_at;
+    }
+}
+
+define behavior for ZLL_R_Urlaubsanspruch alias Urlaubsanspruch
+persistent table zll_urlaubsanspr
+lock dependent by _Mitarbeiter
+authorization dependent by _Mitarbeiter
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) UrlaubsanspruchUuid;
+  field ( readonly ) MitarbeiterUuid;
+
+  association _Mitarbeiter;
+  mapping for zll_urlaubsanspr corresponding
+    {
+      UrlaubsanspruchUuid = urlaubsanspruch_uuid;
+      MitarbeiterUuid     = mitarbeiter_uuid;
+      Jahr                = jahr;
+      Urlaubstage         = urlaubstage;
+    }
+}
+
+define behavior for ZLL_R_Urlaubsantrag alias Urlaubsantrag
+persistent table zll_urlaubsantr
+lock dependent by _Antragsteller
+authorization dependent by _Antragsteller
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) UrlaubsantragUuid;
+  field ( readonly ) AntragstellerUuid;
+  field ( readonly ) GenehmigenderUuid;
+
+
+  association _Antragsteller;
+  association _Genehmigender;
+
+    mapping for zll_urlaubsantr corresponding
+  {
+    UrlaubsantragUuid  = urlaubsantrag_uuid;
+    AntragstellerUuid  = antragsteller_uuid;
+    GenehmigenderUuid  = genehmigender_uuid;
+    Startdatum         = startdatum;
+    Enddatum           = enddatum;
+    Urlaubstage        = urlaubstage;
+    Kommentar          = kommentar;
+    Status             = status;
+  }
+
+
+}

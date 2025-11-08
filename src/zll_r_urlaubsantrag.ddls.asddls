@@ -1,8 +1,10 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'BO Basic View Urlaubsantrag'
 define view entity ZLL_R_Urlaubsantrag as select from zll_urlaubsantr
-association to parent ZLL_R_Mitarbeiter as _Genehmigender on $projection.GenehmigenderUuid = _Genehmigender.MitarbeiterUuid
-association to ZLL_R_Mitarbeiter as _Antragsteller on $projection.AntragstellerUuid = _Antragsteller.MitarbeiterUuid
+association to parent ZLL_R_Mitarbeiter as _Antragsteller on $projection.AntragstellerUuid = _Antragsteller.MitarbeiterUuid
+association to ZLL_R_Mitarbeiter as _Genehmigender on $projection.GenehmigenderUuid = _Genehmigender.MitarbeiterUuid
+
+
 
 {
     key urlaubsantrag_uuid as UrlaubsantragUuid,
@@ -14,6 +16,7 @@ association to ZLL_R_Mitarbeiter as _Antragsteller on $projection.AntragstellerU
     kommentar as Kommentar,
     status as Status,
     
-    _Genehmigender,
-    _Antragsteller
+    _Antragsteller,
+    _Genehmigender
+    
 }
