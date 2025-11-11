@@ -59,8 +59,10 @@ lock dependent by _Antragsteller
 authorization dependent by _Antragsteller
 //etag master <field_name>
 {
+
   update;
   delete;
+
 
   field ( readonly, numbering : managed ) UrlaubsantragUuid;
   field ( readonly ) AntragstellerUuid;

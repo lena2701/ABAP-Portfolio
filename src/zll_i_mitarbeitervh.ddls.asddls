@@ -5,8 +5,7 @@ define view ZLL_I_MitarbeiterVH
   as select from zll_mitarbeiter
 {
   key mitarbeiter_uuid  as MitarbeiterUuid,
-      mitarbeiternummer as Mitarbeiternummer,
       vorname           as Vorname,
-      nachname          as Nachname,
-      eintrittsdatum    as Eintrittsdatum
+      nachname          as Nachname
+   
 }
