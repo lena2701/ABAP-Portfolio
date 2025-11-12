@@ -8,13 +8,17 @@ authorization master ( instance )
 //etag master <field_name>
 {
 
-  create;
+
   update;
   delete;
 
   field ( readonly, numbering : managed ) MitarbeiterUuid;
+  field (readonly) CreatedBy;
+  field (readonly) CreatedAt;
+    field (readonly) LastChangedBy;
+  field (readonly) LastChangedAt;
 
-  association _Urlaubsanspruch { create; }
+  association _Urlaubsanspruch;
   association _Urlaubsantrag { create; }
 
   mapping for zll_mitarbeiter corresponding

@@ -2,7 +2,7 @@
 @EndUserText.label: 'BO Basic View Urlaubsantrag'
 define view entity ZLL_R_Urlaubsantrag as select from zll_urlaubsantr
 association to parent ZLL_R_Mitarbeiter as _Antragsteller on $projection.AntragstellerUuid = _Antragsteller.MitarbeiterUuid
-association to ZLL_R_Mitarbeiter as _Genehmigender on $projection.GenehmigenderUuid = _Genehmigender.MitarbeiterUuid
+association [1..1] to ZLL_R_Mitarbeiter as _Genehmigender on $projection.GenehmigenderUuid = _Genehmigender.MitarbeiterUuid
 association [1..1] to ZLL_I_MitarbeiterText as _GenehmigenderText on $projection.GenehmigenderUuid = _GenehmigenderText.MitarbeiterUuid
 
 

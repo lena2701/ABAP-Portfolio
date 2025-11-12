@@ -25,20 +25,20 @@ annotate view ZLL_C_Mitarbeiter with
 
   @UI.lineItem: [{ position: 10 }]
   @UI.selectionField: [{ position: 10 }]
-  @UI.fieldGroup: [{ position: 10, qualifier: 'TravelDetails' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'MitarbeiterDetails' }]
   Mitarbeiternummer;
 
   @UI.lineItem: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 20, qualifier: 'TravelDetails' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'MitarbeiterDetails' }]
   Vorname;
 
   @UI.lineItem: [{ position: 30 }]
-  @UI.fieldGroup: [{ position: 30, qualifier: 'TravelDetails' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'MitarbeiterDetails' }]
   Nachname;
 
   @UI.lineItem: [{ position: 40 }]
   @UI.selectionField: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 40, qualifier: 'TravelDetails' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'MitarbeiterDetails' }]
   Eintrittsdatum;
 
   @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]

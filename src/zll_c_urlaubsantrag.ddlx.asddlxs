@@ -25,23 +25,23 @@ annotate view ZLL_C_Urlaubsantrag
   GenehmigenderUuid;
   
   @UI.lineItem: [{ position: 10 }]
-  @UI.fieldGroup: [{ position: 10, qualifier: 'BookingDetails' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AntragsDetails' }]
   Startdatum;
 
   @UI.lineItem: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 20, qualifier: 'BookingDetails' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AntragsDetails' }]
   Enddatum;
 
   @UI.lineItem: [{ position: 30 }]
-  @UI.fieldGroup: [{ position: 30, qualifier: 'BookingDetails' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AntragsDetails' }]
   Urlaubstage;
 
   @UI.lineItem: [{ position: 40 }]
-  @UI.fieldGroup: [{ position: 40, qualifier: 'BookingDetails' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'AntragsDetails' }]
   Kommentar;
 
   @UI.lineItem: [{ position: 50 }]
-  @UI.fieldGroup: [{ position: 50, qualifier: 'BookingDetails' }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'AntragsDetails' }]
   Status;
 
     
