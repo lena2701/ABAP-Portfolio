@@ -9,20 +9,20 @@ association [1..1] to ZLL_I_MitarbeiterText as _GenehmigenderText on $projection
 {
     key urlaubsantrag_uuid as UrlaubsantragUuid,
     antragsteller_uuid as AntragstellerUuid,
-    @ObjectModel.text.element: ['GenehmigenderName']
+    @ObjectModel.text.element: ['Genehmigender']
     genehmigender_uuid as GenehmigenderUuid,
     startdatum as Startdatum,
     enddatum as Enddatum,
     urlaubstage as Urlaubstage,
     kommentar as Kommentar,
     status as Status,
+
     
     /* Transient Data */
-     _GenehmigenderText.Name as GenehmigenderName,
+     _GenehmigenderText.Name as Genehmigender,
      
      /* Associations */
     _Antragsteller,
     _Genehmigender
-   
     
 }

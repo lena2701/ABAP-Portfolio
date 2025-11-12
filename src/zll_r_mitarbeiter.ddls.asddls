@@ -5,7 +5,6 @@ define root view entity ZLL_R_Mitarbeiter
   composition [0..*] of ZLL_R_Urlaubsanspruch as _Urlaubsanspruch
   composition [0..*] of ZLL_R_Urlaubsantrag as _Urlaubsantrag
   
-  
 {
   key mitarbeiter_uuid  as MitarbeiterUuid,
       mitarbeiternummer as Mitarbeiternummer,

@@ -27,4 +27,16 @@ annotate view ZLL_C_Urlaubsanspruch with
   @UI.fieldGroup: [{ position: 20, qualifier: 'AnspruchDetails' }]
   Urlaubstage;
 
+  @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AnspruchDetails' }]
+  GeplanteTage;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'AnspruchDetails' }]
+  VerbrauchteTage;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'AnspruchDetails' }]
+  VerfuegbareTage;
+
 }

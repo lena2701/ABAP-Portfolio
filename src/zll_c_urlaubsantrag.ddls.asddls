@@ -25,6 +25,6 @@ define view entity ZLL_C_Urlaubsantrag as projection on ZLL_R_Urlaubsantrag
     _Genehmigender : redirected to ZLL_C_Mitarbeiter,
     
     /* Transient Data */
-    GenehmigenderName
+    Genehmigender
     
 }

@@ -2,17 +2,20 @@
 @EndUserText.label: 'BO Projection View Urlaubsanspruch'
 @Metadata.allowExtensions: true
 
-define view entity ZLL_C_Urlaubsanspruch as projection on ZLL_R_Urlaubsanspruch
+define view entity ZLL_C_Urlaubsanspruch
+  as projection on ZLL_R_Urlaubsanspruch
 {
-    key UrlaubsanspruchUuid,
-    MitarbeiterUuid,
-    @EndUserText.label: 'Jahr'
-    Jahr,
-    @EndUserText.label: 'Urlaubstage'
-    Urlaubstage,
-    
-    _Mitarbeiter : redirected to parent ZLL_C_Mitarbeiter
-    
-    
-    
+  key UrlaubsanspruchUuid,
+      MitarbeiterUuid,
+      @EndUserText.label: 'Jahr'
+      Jahr,
+      @EndUserText.label: 'Urlaubstage'
+      Urlaubstage,
+
+
+
+      _Mitarbeiter : redirected to parent ZLL_C_Mitarbeiter
+
+
+
 }

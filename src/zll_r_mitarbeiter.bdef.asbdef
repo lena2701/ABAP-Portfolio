@@ -47,6 +47,7 @@ authorization dependent by _Mitarbeiter
   field ( readonly, numbering : managed ) UrlaubsanspruchUuid;
   field ( readonly ) MitarbeiterUuid;
 
+
   association _Mitarbeiter;
   mapping for zll_urlaubsanspr corresponding
     {
