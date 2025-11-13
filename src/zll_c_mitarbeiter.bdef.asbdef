@@ -4,19 +4,12 @@ strict ( 2 );
 define behavior for ZLL_C_Mitarbeiter alias Mitarbeiter
 {
 
+  use create;
   use update;
   use delete;
 
-  use association _Urlaubsanspruch;
+
   use association _Urlaubsantrag { create; }
-}
-
-define behavior for ZLL_C_Urlaubsanspruch alias Urlaubsanspruch
-{
-  use update;
-  use delete;
-
-  use association _Mitarbeiter;
 }
 
 define behavior for ZLL_C_Urlaubsantrag alias Urlaubsantrag
@@ -25,5 +18,5 @@ define behavior for ZLL_C_Urlaubsantrag alias Urlaubsantrag
   use delete;
 
   use association _Antragsteller;
-  use association _Genehmigender;
+
 }

@@ -1,6 +1,7 @@
 managed implementation in class zbp_ll_r_mitarbeiter unique;
 strict ( 2 );
 
+
 define behavior for ZLL_R_Mitarbeiter alias Mitarbeiter
 persistent table zll_mitarbeiter
 lock master
@@ -8,18 +9,21 @@ authorization master ( instance )
 //etag master <field_name>
 {
 
-
+  create;
   update;
   delete;
 
   field ( readonly, numbering : managed ) MitarbeiterUuid;
-  field (readonly) CreatedBy;
-  field (readonly) CreatedAt;
-    field (readonly) LastChangedBy;
-  field (readonly) LastChangedAt;
+  field ( readonly ) CreatedBy;
+  field ( readonly ) CreatedAt;
+  field ( readonly ) LastChangedBy;
+  field ( readonly ) LastChangedAt;
 
-  association _Urlaubsanspruch;
+  association _Urlaubsanspruch { create; }
   association _Urlaubsantrag { create; }
+  association _Antragsteller;
+  association _Genehmigender;
+
 
   mapping for zll_mitarbeiter corresponding
     {
@@ -35,6 +39,7 @@ authorization master ( instance )
     }
 }
 
+
 define behavior for ZLL_R_Urlaubsanspruch alias Urlaubsanspruch
 persistent table zll_urlaubsanspr
 lock dependent by _Mitarbeiter
@@ -49,6 +54,7 @@ authorization dependent by _Mitarbeiter
 
 
   association _Mitarbeiter;
+
   mapping for zll_urlaubsanspr corresponding
     {
       UrlaubsanspruchUuid = urlaubsanspruch_uuid;
@@ -68,26 +74,40 @@ authorization dependent by _Antragsteller
   update;
   delete;
 
-
-  field ( readonly, numbering : managed ) UrlaubsantragUuid;
-  field ( readonly ) AntragstellerUuid;
-  field ( readonly ) GenehmigenderUuid;
-
-
   association _Antragsteller;
   association _Genehmigender;
 
-    mapping for zll_urlaubsantr corresponding
-  {
-    UrlaubsantragUuid  = urlaubsantrag_uuid;
-    AntragstellerUuid  = antragsteller_uuid;
-    GenehmigenderUuid  = genehmigender_uuid;
-    Startdatum         = startdatum;
-    Enddatum           = enddatum;
-    Urlaubstage        = urlaubstage;
-    Kommentar          = kommentar;
-    Status             = status;
-  }
+  validation BestaetigeUrlaubstage on save { create; update; }
+  validation BestaetigeDatum on save { create; update; }
+
+  determination BestimmeStatus on modify
+  { field GenehmigenderUuid, Startdatum, Enddatum, Kommentar; }
+
+  determination BestimmeUrlaubstage on modify
+  { field Startdatum, Enddatum; }
+
+  field ( readonly, numbering : managed ) UrlaubsantragUuid;
+  field ( mandatory : create ) GenehmigenderUuid, Startdatum, Enddatum;
+  field ( readonly ) AntragstellerUuid, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, Status, urlaubstage;
+
+
+
+
+  mapping for zll_urlaubsantr corresponding
+    {
+      UrlaubsantragUuid = urlaubsantrag_uuid;
+      AntragstellerUuid = antragsteller_uuid;
+      GenehmigenderUuid = genehmigender_uuid;
+      Startdatum        = startdatum;
+      Enddatum          = enddatum;
+      Urlaubstage       = urlaubstage;
+      Kommentar         = kommentar;
+      Status            = status;
+      CreatedBy         = created_by;
+      CreatedAt         = created_at;
+      LastChangedBy     = last_changed_by;
+      LastChangedAt     = last_changed_at;
+    }
 
 
 }
