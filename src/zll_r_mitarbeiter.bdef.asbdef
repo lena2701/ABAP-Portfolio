@@ -5,13 +5,9 @@ strict ( 2 );
 define behavior for ZLL_R_Mitarbeiter alias Mitarbeiter
 persistent table zll_mitarbeiter
 lock master
-authorization master ( instance )
+authorization master ( global )
 //etag master <field_name>
 {
-
-  create;
-  update;
-  delete;
 
   field ( readonly, numbering : managed ) MitarbeiterUuid;
   field ( readonly ) CreatedBy;
@@ -19,7 +15,7 @@ authorization master ( instance )
   field ( readonly ) LastChangedBy;
   field ( readonly ) LastChangedAt;
 
-  association _Urlaubsanspruch { create; }
+  association _Urlaubsanspruch;
   association _Urlaubsantrag { create; }
   association _Antragsteller;
   association _Genehmigender;
@@ -52,6 +48,11 @@ authorization dependent by _Mitarbeiter
   field ( readonly, numbering : managed ) UrlaubsanspruchUuid;
   field ( readonly ) MitarbeiterUuid;
 
+  field ( readonly ) CreatedAt;
+  field ( readonly ) CreatedBy;
+  field ( readonly ) LastChangedAt;
+  field ( readonly ) LastChangedBy;
+
 
   association _Mitarbeiter;
 
@@ -61,10 +62,14 @@ authorization dependent by _Mitarbeiter
       MitarbeiterUuid     = mitarbeiter_uuid;
       Jahr                = jahr;
       Urlaubstage         = urlaubstage;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
     }
 }
 
-define behavior for ZLL_R_Urlaubsantrag alias Urlaubsantrag
+define behavior for ZLL_R_Urlaubsantrag
 persistent table zll_urlaubsantr
 lock dependent by _Antragsteller
 authorization dependent by _Antragsteller
@@ -77,6 +82,10 @@ authorization dependent by _Antragsteller
   association _Antragsteller;
   association _Genehmigender;
 
+
+  action AblehnenUrlaubsantrag result [1] $self;
+  action GenehmigeUrlaubsantrag result [1] $self;
+
   validation BestaetigeUrlaubstage on save { create; update; }
   validation BestaetigeDatum on save { create; update; }
 
@@ -88,7 +97,7 @@ authorization dependent by _Antragsteller
 
   field ( readonly, numbering : managed ) UrlaubsantragUuid;
   field ( mandatory : create ) GenehmigenderUuid, Startdatum, Enddatum;
-  field ( readonly ) AntragstellerUuid, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, Status, urlaubstage;
+  field ( readonly ) AntragstellerName, GenehmigenderName, AntragstellerUuid, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, Status, urlaubstage;
 
 
 

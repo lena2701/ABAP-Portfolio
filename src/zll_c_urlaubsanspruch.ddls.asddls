@@ -11,7 +11,11 @@ define view entity ZLL_C_Urlaubsanspruch
       Jahr,
       @EndUserText.label: 'Urlaubstage'
       Urlaubstage,
-
+      MitarbeiterName,
+      CreatedBy,
+     CreatedAt,
+     LastChangedBy,
+     LastChangedAt,
 
 
       _Mitarbeiter : redirected to parent ZLL_C_Mitarbeiter

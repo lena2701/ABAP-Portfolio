@@ -4,16 +4,12 @@ define view entity ZLL_R_Urlaubsantrag
   as select from zll_urlaubsantr
   association        to parent ZLL_R_Mitarbeiter as _Antragsteller     on $projection.AntragstellerUuid = _Antragsteller.MitarbeiterUuid
   association [1..1] to ZLL_R_Mitarbeiter        as _Genehmigender     on $projection.GenehmigenderUuid = _Genehmigender.MitarbeiterUuid
-  association [1..1] to ZLL_I_MitarbeiterText    as _GenehmigenderText on $projection.GenehmigenderUuid = _GenehmigenderText.MitarbeiterUuid
- association [1..1] to ZLL_I_MitarbeiterText    as _AntragstellerText on $projection.AntragstellerUuid = _AntragstellerText.MitarbeiterUuid
+  association [1..1] to ZLL_I_MitarbeiterText    as _GenehmigenderName on $projection.GenehmigenderUuid = _GenehmigenderName.MitarbeiterUuid
+ association [1..1] to ZLL_I_MitarbeiterText    as _AntragstellerName on $projection.AntragstellerUuid = _AntragstellerName.MitarbeiterUuid
 
 {
   key urlaubsantrag_uuid      as UrlaubsantragUuid,
-      @Semantics.uuid: true
-      @ObjectModel.text.element: ['Antragsteller']
       antragsteller_uuid      as AntragstellerUuid,
-      @Semantics.uuid: true
-      @ObjectModel.text.element: ['Genehmigender']
       genehmigender_uuid      as GenehmigenderUuid,
       startdatum              as Startdatum,
       enddatum                as Enddatum,
@@ -33,8 +29,8 @@ define view entity ZLL_R_Urlaubsantrag
 
 
       /* Transient Data */
-      _GenehmigenderText.Name as Genehmigender,
-      _AntragstellerText.Name as Antragsteller,
+      _GenehmigenderName.Name as GenehmigenderName,
+      _AntragstellerName.Name as AntragstellerName,
 
       /* Associations */
       _Antragsteller,

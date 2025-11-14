@@ -3,40 +3,46 @@
 {
   typeName: 'Urlaubsanspruch',
   typeNamePlural: 'Urlaubsansprüche',
-  title.value: 'Jahr',
+  title.value: 'UrlaubsanspruchUuid',
   description.value: 'Urlaubstage'
 }
-annotate view ZLL_C_Urlaubsanspruch with
+annotate entity ZLL_C_Urlaubsanspruch with
 {
   @UI.facet:
   [
   { position: 10, targetQualifier: 'AnspruchDetais', label: 'Anspruch Details', type: #FIELDGROUP_REFERENCE },
   { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
   ]
-  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+@UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
   UrlaubsanspruchUuid;
 
-  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
-  MitarbeiterUuid;
-  
-  @UI.lineItem: [{ position: 10 }]
-  @UI.fieldGroup: [{ position: 10, qualifier: 'AnspruchDetails' }]
-  Jahr;
 
-  @UI.lineItem: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 20, qualifier: 'AnspruchDetails' }]
-  Urlaubstage;
+  @UI.lineItem: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AnspruchDetais' }]
+  MitarbeiterName;
 
   @UI.lineItem: [{ position: 30 }]
-  @UI.fieldGroup: [{ position: 30, qualifier: 'AnspruchDetails' }]
-  GeplanteTage;
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AnspruchDetais' }]
+  Jahr;
 
   @UI.lineItem: [{ position: 40 }]
-  @UI.fieldGroup: [{ position: 40, qualifier: 'AnspruchDetails' }]
-  VerbrauchteTage;
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails' }]
+  Urlaubstage;
 
-  @UI.lineItem: [{ position: 50 }]
-  @UI.fieldGroup: [{ position: 50, qualifier: 'AnspruchDetails' }]
-  VerfuegbareTage;
+  
+    @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
+  CreatedBy;
+  
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+  CreatedAt;
+  
+  @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+  LastChangedBy;
+  
+  @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
+  LastChangedAt;  
+  
 
 }

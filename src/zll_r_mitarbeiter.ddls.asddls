@@ -7,11 +7,12 @@ define root view entity ZLL_R_Mitarbeiter
   association [1..1] to ZLL_I_MitarbeiterText        as _MitarbeiterText on $projection.MitarbeiterUuid = _MitarbeiterText.MitarbeiterUuid
   association [1..*] to ZLL_R_Urlaubsantrag          as _Antragsteller on $projection.MitarbeiterUuid = _Antragsteller.AntragstellerUuid
   association [1..*] to ZLL_R_Urlaubsantrag          as _Genehmigender on $projection.MitarbeiterUuid = _Genehmigender.GenehmigenderUuid
-  association [1..1] to ZLL_R_VerfuegbareUrlaubstage as _verfuegbar    on $projection.MitarbeiterUuid = _verfuegbar.mitarbeiter
-  association [1..1] to ZLL_R_GeplanteUrlaubstage    as _geplant       on $projection.MitarbeiterUuid = _geplant.mitarbeiter
-  association [1..1] to ZLL_R_VerbrauchteUrlaubstage as _verbraucht    on $projection.MitarbeiterUuid = _verbraucht.mitarbeiter
+  association [1..1] to ZLL_I_VerfuegbareUrlaubstage as _verfuegbar    on $projection.MitarbeiterUuid = _verfuegbar.mitarbeiter
+  association [1..1] to ZLL_I_GeplanteUrlaubstage    as _geplant       on $projection.MitarbeiterUuid = _geplant.mitarbeiter
+  association [1..1] to ZLL_I_VerbrauchteUrlaubstage as _verbraucht    on $projection.MitarbeiterUuid = _verbraucht.mitarbeiter
 
 {
+  @ObjectModel.text.element: ['MitarbeiterName']
   key mitarbeiter_uuid                   as MitarbeiterUuid,
       mitarbeiternummer                  as Mitarbeiternummer,
       vorname                            as Vorname,

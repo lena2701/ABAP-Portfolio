@@ -31,7 +31,7 @@ CLASS zll_cm_mitarbeiter DEFINITION PUBLIC
 
 
     " Attributs
-    DATA Comment TYPE zll_kommentar.
+    DATA Kommentar TYPE zll_kommentar.
 
     " Constructor
     METHODS constructor
@@ -52,7 +52,7 @@ CLASS zll_cm_mitarbeiter IMPLEMENTATION.
 
     if_t100_message~t100key = textid.
     if_abap_behv_message~m_severity = severity.
-    me->comment = comment.
+    me->kommentar = kommentar.
   ENDMETHOD.
 
 ENDCLASS.
