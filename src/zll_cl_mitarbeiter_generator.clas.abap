@@ -1,10 +1,20 @@
-CLASS zll_cl_mitarbeiter_generator DEFINITION PUBLIC FINAL CREATE PUBLIC .
+CLASS zll_cl_mitarbeiter_generator DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
   PUBLIC SECTION.
     INTERFACES if_oo_adt_classrun.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
+
+
+CLASS ZLL_CL_MITARBEITER_GENERATOR IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     DATA mitarbeiter  TYPE ZLL_Mitarbeiter.
     DATA mitarbeitende TYPE TABLE OF ZLL_Mitarbeiter.
@@ -15,7 +25,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     DATA urlaubsantrag TYPE ZLL_Urlaubsantr.
     DATA urlaubsantraege TYPE TABLE OF ZLL_Urlaubsantr.
 
-     " Delete Employees
+    " Delete Employees
     DELETE FROM zll_mitarbeiter.
     out->write( |Gelöschte Mitarbeiter: { sy-dbcnt }| ).
 
@@ -28,7 +38,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     out->write( |Gelöschte Urlaubsansprüche: { sy-dbcnt }| ).
 
     " Create Employees
-    mitarbeiter-client = '001'.
+    mitarbeiter-client = sy-mandt.
     mitarbeiter-mitarbeiternummer = '000001'.
     mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     mitarbeiter-vorname = 'Hans'.
@@ -40,7 +50,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     mitarbeiter-last_changed_by = 'GENERATOR'.
     APPEND mitarbeiter TO mitarbeitende.
 
-    mitarbeiter-client = '001'.
+    mitarbeiter-client = sy-mandt.
     mitarbeiter-mitarbeiternummer = '000002'.
     mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     mitarbeiter-vorname = 'Lisa'.
@@ -52,7 +62,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     mitarbeiter-last_changed_by = 'GENERATOR'.
     APPEND mitarbeiter TO mitarbeitende.
 
-    mitarbeiter-client = '001'.
+    mitarbeiter-client = sy-mandt.
     mitarbeiter-mitarbeiternummer = '000003'.
     mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     mitarbeiter-vorname = 'Petra'.
@@ -64,17 +74,6 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     mitarbeiter-last_changed_by = 'GENERATOR'.
     APPEND mitarbeiter TO mitarbeitende.
 
-    mitarbeiter-client = '001'.
-    mitarbeiter-mitarbeiternummer = '002701'.
-    mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-    mitarbeiter-vorname = 'Lena'.
-    mitarbeiter-nachname = 'Strohmenger'.
-    mitarbeiter-eintrittsdatum = '20241001'.
-    GET TIME STAMP FIELD mitarbeiter-created_at.
-    GET TIME STAMP FIELD mitarbeiter-last_changed_at.
-    mitarbeiter-created_by = 'GENERATOR'.
-    mitarbeiter-last_changed_by = 'GENERATOR'.
-    APPEND mitarbeiter TO mitarbeitende.
 
     INSERT zll_mitarbeiter FROM TABLE @mitarbeitende.
     out->write( |Eingefügte Mitarbeiter: { sy-dbcnt }| ).
@@ -82,7 +81,6 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     DATA(lv_emp_hans)  = mitarbeitende[ mitarbeiternummer = '000001' ]-mitarbeiter_uuid.
     DATA(lv_emp_lisa)  = mitarbeitende[ mitarbeiternummer = '000002' ]-mitarbeiter_uuid.
     DATA(lv_emp_petra) = mitarbeitende[ mitarbeiternummer = '000003' ]-mitarbeiter_uuid.
-    DATA(lv_emp_lena) = mitarbeitende[ mitarbeiternummer = '002701' ]-mitarbeiter_uuid.
 
 
 
@@ -185,7 +183,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
     urlaubsanspruch-created_by = 'GENERATOR'.
     urlaubsanspruch-last_changed_by = 'GENERATOR'.
-    APPEND urlaubsanspruch to urlaubsansprueche.
+    APPEND urlaubsanspruch TO urlaubsansprueche.
 
     urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsanspruch-mitarbeiter_uuid = lv_emp_hans.
@@ -195,7 +193,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
     urlaubsanspruch-created_by = 'GENERATOR'.
     urlaubsanspruch-last_changed_by = 'GENERATOR'.
-    APPEND urlaubsanspruch to urlaubsansprueche.
+    APPEND urlaubsanspruch TO urlaubsansprueche.
 
     urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsanspruch-mitarbeiter_uuid = lv_emp_lisa.
@@ -205,7 +203,7 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
     urlaubsanspruch-created_by = 'GENERATOR'.
     urlaubsanspruch-last_changed_by = 'GENERATOR'.
-    APPEND urlaubsanspruch to urlaubsansprueche.
+    APPEND urlaubsanspruch TO urlaubsansprueche.
 
     urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
     urlaubsanspruch-mitarbeiter_uuid = lv_emp_petra.
@@ -215,34 +213,12 @@ CLASS zll_cl_mitarbeiter_generator IMPLEMENTATION.
     GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
     urlaubsanspruch-created_by = 'GENERATOR'.
     urlaubsanspruch-last_changed_by = 'GENERATOR'.
-    APPEND urlaubsanspruch to urlaubsansprueche.
+    APPEND urlaubsanspruch TO urlaubsansprueche.
 
-    urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-    urlaubsanspruch-mitarbeiter_uuid = lv_emp_lena.
-    urlaubsanspruch-urlaubstage = 30.
-    urlaubsanspruch-jahr = 2024.
-    GET TIME STAMP FIELD urlaubsanspruch-created_at.
-    GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
-    urlaubsanspruch-created_by = 'GENERATOR'.
-    urlaubsanspruch-last_changed_by = 'GENERATOR'.
-    APPEND urlaubsanspruch to urlaubsansprueche.
-
-    urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
-    urlaubsanspruch-mitarbeiter_uuid = lv_emp_lena.
-    urlaubsanspruch-urlaubstage = 30.
-    urlaubsanspruch-jahr = 2025.
-    GET TIME STAMP FIELD urlaubsanspruch-created_at.
-    GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
-    urlaubsanspruch-created_by = 'GENERATOR'.
-    urlaubsanspruch-last_changed_by = 'GENERATOR'.
-    APPEND urlaubsanspruch to urlaubsansprueche.
 
     INSERT zll_urlaubsanspr FROM TABLE @urlaubsansprueche.
     out->write( |Eingefügte Urlaubsansprüche: { sy-dbcnt }| ).
 
 
   ENDMETHOD.
-
-
-
 ENDCLASS.

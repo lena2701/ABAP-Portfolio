@@ -1,6 +1,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'BO Projection View Urlaubsanspruch'
 @Metadata.allowExtensions: true
+@Search.searchable: true
 
 define view entity ZLL_C_Urlaubsanspruch
   as projection on ZLL_R_Urlaubsanspruch

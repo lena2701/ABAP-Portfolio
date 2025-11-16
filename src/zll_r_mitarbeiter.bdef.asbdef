@@ -1,15 +1,19 @@
 managed implementation in class zbp_ll_r_mitarbeiter unique;
 strict ( 2 );
 
-
-define behavior for ZLL_R_Mitarbeiter alias Mitarbeiter
+define behavior for ZLL_R_Mitarbeiter
 persistent table zll_mitarbeiter
 lock master
 authorization master ( global )
 //etag master <field_name>
 {
 
+    update;
+    create;
+    delete;
+
   field ( readonly, numbering : managed ) MitarbeiterUuid;
+
   field ( readonly ) CreatedBy;
   field ( readonly ) CreatedAt;
   field ( readonly ) LastChangedBy;
@@ -36,14 +40,13 @@ authorization master ( global )
 }
 
 
-define behavior for ZLL_R_Urlaubsanspruch alias Urlaubsanspruch
+define behavior for ZLL_R_Urlaubsanspruch
 persistent table zll_urlaubsanspr
 lock dependent by _Mitarbeiter
 authorization dependent by _Mitarbeiter
 //etag master <field_name>
 {
-  update;
-  delete;
+
 
   field ( readonly, numbering : managed ) UrlaubsanspruchUuid;
   field ( readonly ) MitarbeiterUuid;
@@ -90,14 +93,14 @@ authorization dependent by _Antragsteller
   validation BestaetigeDatum on save { create; update; }
 
   determination BestimmeStatus on modify
-  { field GenehmigenderUuid, Startdatum, Enddatum, Kommentar; }
+  { field GenehmigenderName, Startdatum, Enddatum, Kommentar; }
 
   determination BestimmeUrlaubstage on modify
   { field Startdatum, Enddatum; }
 
   field ( readonly, numbering : managed ) UrlaubsantragUuid;
   field ( mandatory : create ) GenehmigenderUuid, Startdatum, Enddatum;
-  field ( readonly ) AntragstellerName, GenehmigenderName, AntragstellerUuid, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, Status, urlaubstage;
+  field ( readonly ) AntragstellerName, GenehmigenderName, AntragstellerUuid, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy, Status, Urlaubstage;
 
 
 

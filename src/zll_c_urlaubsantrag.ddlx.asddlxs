@@ -41,10 +41,10 @@ _Antragsteller;
 
   @UI.selectionField: [{ position: 20 }]
   @UI.lineItem: [{ position: 50, label: 'Genehmiger' }]
-  @UI.fieldGroup: [{ position: 50, qualifier: 'AntragsDetails', label: 'GenehmigenderName' }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'AntragsDetails', label: 'Genehmigender' }]
   GenehmigenderName;
   
-  @UI.fieldGroup: [ { position: 55, qualifier: 'AntragsDetails', label: 'GenehmigerUuid' } ]
+  @UI.fieldGroup: [ { position: 55, qualifier: 'AntragsDetails', label: 'Genehmiger Uuid' } ]
   GenehmigenderUuid;
 
   @UI.lineItem: [{ position: 60, label: 'Kommentar' }]
@@ -57,7 +57,7 @@ _Antragsteller;
   Status;
   
   @UI.lineItem: [ { position: 80, label: 'Inquiry Uuid' } ]
-  @UI.fieldGroup: [ { position: 80, qualifier: 'AntragsDetails', label: 'UrlaubsantragUuid' } ]
+  @UI.fieldGroup: [ { position: 80, qualifier: 'AntragsDetails', label: 'Urlaubsantrag Uuid' } ]
   UrlaubsantragUuid;
 
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]

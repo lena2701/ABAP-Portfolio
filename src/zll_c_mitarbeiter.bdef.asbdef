@@ -1,9 +1,12 @@
 projection;
 strict ( 2 );
 
-define behavior for ZLL_C_Mitarbeiter alias Mitarbeiter
+define behavior for ZLL_C_Mitarbeiter
 {
 
+  use update;
+  use create;
+  use delete;
   use association _Urlaubsantrag { create; }
 
 }

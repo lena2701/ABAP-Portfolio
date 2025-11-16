@@ -1,7 +1,9 @@
+
+@AbapCatalog.sqlViewName: 'ZLL_I_GEPLANT'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Geplante Urlaubstage'
 
-define view entity ZLL_I_GeplanteUrlaubstage as select from zll_urlaubsantr
+define view ZLL_I_GeplanteUrlaubstage_ as select from zll_urlaubsantr
 {
           antragsteller_uuid as mitarbeiter,
 sum( 
@@ -14,4 +16,6 @@ as GeplanteUrlaubstage
 where status <> 'A'
 group by
 antragsteller_uuid;
+    
+
     

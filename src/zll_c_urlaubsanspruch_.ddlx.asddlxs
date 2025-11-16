@@ -8,41 +8,42 @@
 }
 annotate entity ZLL_C_Urlaubsanspruch with
 {
-  @UI.facet:
+ @UI.facet:
   [
-  { position: 10, targetQualifier: 'AnspruchDetais', label: 'Anspruch Details', type: #FIELDGROUP_REFERENCE },
-  { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+  { position: 10, targetQualifier: 'EmployeeDetails', label: 'Mitarbeiter Details', type: #FIELDGROUP_REFERENCE },
+  { position: 20, targetQualifier: 'ApproverData', label: 'Genehmigender Daten', type: #FIELDGROUP_REFERENCE},
+  { position: 30, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE}
   ]
-@UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'ApproverData', label: 'Urlaubsanspruch Uuid' }]
   UrlaubsanspruchUuid;
 
 
   @UI.lineItem: [{ position: 10 }]
-  @UI.fieldGroup: [{ position: 20, qualifier: 'AnspruchDetais' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'EmployeeDetails', label: 'Mitarbeiter Name' }]
   MitarbeiterName;
 
   @UI.lineItem: [{ position: 30 }]
   @UI.selectionField: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 30, qualifier: 'AnspruchDetais' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'EmployeeDetails', label: 'Anspruchsjahr' }]
   Jahr;
 
   @UI.lineItem: [{ position: 40 }]
   @UI.selectionField: [{ position: 30 }]
-  @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails', label: 'Urlaubstage' }]
   Urlaubstage;
-
   
-    @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
   CreatedBy;
   
-  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
   CreatedAt;
   
-  @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
   LastChangedBy;
   
-  @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
-  LastChangedAt;  
+  @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+  LastChangedAt;
+  
   
 
 }

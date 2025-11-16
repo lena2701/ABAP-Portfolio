@@ -13,7 +13,7 @@ CLASS zll_cm_mitarbeiter DEFINITION PUBLIC
       BEGIN OF enddatum_vor_startdatum,
         msgid TYPE symsgid      VALUE 'ZLL_Mitarbeiter',
         msgno TYPE symsgno      VALUE '001',
-        attr1 TYPE scx_attrname VALUE 'Comment',
+        attr1 TYPE scx_attrname VALUE 'Kommentar',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
@@ -23,7 +23,7 @@ CLASS zll_cm_mitarbeiter DEFINITION PUBLIC
       BEGIN OF nicht_genuegend_urlaubstage,
         msgid TYPE symsgid      VALUE 'ZLL_Mitarbeiter',
         msgno TYPE symsgno      VALUE '002',
-        attr1 TYPE scx_attrname VALUE 'Comment',
+        attr1 TYPE scx_attrname VALUE 'Kommentar',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
@@ -31,7 +31,7 @@ CLASS zll_cm_mitarbeiter DEFINITION PUBLIC
 
 
     " Attributs
-    DATA Kommentar TYPE zll_kommentar.
+    DATA Kommentar TYPE STRING.
 
     " Constructor
     METHODS constructor
@@ -46,7 +46,11 @@ CLASS zll_cm_mitarbeiter DEFINITION PUBLIC
 
 ENDCLASS.
 
-CLASS zll_cm_mitarbeiter IMPLEMENTATION.
+
+
+CLASS ZLL_CM_MITARBEITER IMPLEMENTATION.
+
+
   METHOD constructor ##ADT_SUPPRESS_GENERATION.
     super->constructor( previous = previous ).
 
@@ -54,5 +58,4 @@ CLASS zll_cm_mitarbeiter IMPLEMENTATION.
     if_abap_behv_message~m_severity = severity.
     me->kommentar = kommentar.
   ENDMETHOD.
-
 ENDCLASS.

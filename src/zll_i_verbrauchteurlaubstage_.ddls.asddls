@@ -1,6 +1,8 @@
+
+@AbapCatalog.sqlViewName: 'ZLL_I_VERBRAUCHT'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Verbrauchte Urlaubstage'
-define view entity ZLL_I_VerbrauchteUrlaubstage as select from zll_urlaubsantr
+define view ZLL_I_VerbrauchteUrlaubstage_ as select from zll_urlaubsantr
 {
         antragsteller_uuid as mitarbeiter,
      sum(

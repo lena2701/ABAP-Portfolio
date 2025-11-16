@@ -7,6 +7,7 @@ define root view entity ZLL_C_Mitarbeiter
   as projection on ZLL_R_Mitarbeiter
 {
   key MitarbeiterUuid,
+      @Search.defaultSearchElement: true
       @EndUserText.label: 'Mitarbeiternummer'
       Mitarbeiternummer,
       @Search.defaultSearchElement: true
@@ -17,6 +18,7 @@ define root view entity ZLL_C_Mitarbeiter
       @Search.fuzzinessThreshold: 0.7
       @EndUserText.label: 'Nachname'
       Nachname,
+      @Search.defaultSearchElement: true
       @EndUserText.label: 'Eintrittsdatum'
       Eintrittsdatum,
 

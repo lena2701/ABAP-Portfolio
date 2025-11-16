@@ -9,45 +9,42 @@
 
 annotate entity ZLL_C_Mitarbeiter with
 {
-
-
-  @UI.facet:
-  [
-    { position: 10, targetQualifier: 'MitarbeiterDetails', label: 'Mitarbeiterdetails', type: #FIELDGROUP_REFERENCE },
+  @UI.facet: [
+    { position: 10, targetQualifier: 'EmployeeDetails', label: 'Mitarbeiterdetails', type: #FIELDGROUP_REFERENCE },
     { position: 20, targetElement: '_Urlaubsantrag', label: 'Eigene Urlaubsanträge', type: #LINEITEM_REFERENCE },
     { position: 30, targetElement: '_Urlaubsanspruch',     label: 'Urlaubsanspruch', type: #LINEITEM_REFERENCE },
-    { position: 40, targetQualifier: 'Urlaubstage', label: 'Urlaubstagsplanung', type: #FIELDGROUP_REFERENCE},
+    { position: 40, targetQualifier: 'VacDays', label: 'Urlaubstagsplanung', type: #FIELDGROUP_REFERENCE},
     { position: 50, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE }
+    
   ]
-
-
+  
   @UI.lineItem: [ { position: 10 } ]
   @UI.selectionField: [ { position: 10 } ]
-  @UI.fieldGroup: [{ position: 10, qualifier: 'MitarbeiterDetails', label: 'Mitarbeiternummer' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'EmployeeDetails', label: 'Mitarbeiternummer' }]
   Mitarbeiternummer;
 
   
 
   @UI.lineItem: [{ position: 30 }]
   @UI.selectionField: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 20, qualifier: 'MitarbeiterDetails', label: 'Vorname' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'EmployeeDetails', label: 'Vorname' }]
   Vorname;
 
   @UI.lineItem: [{ position: 40 }]
   @UI.selectionField: [{ position: 30 }]
-  @UI.fieldGroup: [{ position: 30, qualifier: 'MitarbeiterDetails', label: 'Nachname' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'EmployeeDetails', label: 'Nachname' }]
   Nachname;
 
   @UI.lineItem: [{ position: 50 }]
   @UI.selectionField: [{ position: 40 }]
-  @UI.fieldGroup: [{ position: 40, qualifier: 'MitarbeiterDetails', label: 'Eintrittsdatum' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails', label: 'Eintrittsdatum' }]
   Eintrittsdatum;
 
-  @UI.fieldGroup: [ { position: 10, qualifier: 'Urlaubstage', label: 'Verfügbare Urlaubstage'} ]
+  @UI.fieldGroup: [ { position: 10, qualifier: 'VacDays', label: 'Verfügbare Urlaubstage'} ]
   VerfuegbareUrlaubstage;
-  @UI.fieldGroup: [ { position: 20, qualifier: 'Urlaubstage', label: 'Genutzte Urlaubstage'} ]
+  @UI.fieldGroup: [ { position: 20, qualifier: 'VacDays', label: 'Genutzte Urlaubstage'} ]
   VerbrauchteUrlaubstage;
-  @UI.fieldGroup: [ { position: 30, qualifier: 'Urlaubstage', label: 'Verplante Urlaubstage'} ]
+  @UI.fieldGroup: [ { position: 30, qualifier: 'VacDays', label: 'Verplante Urlaubstage'} ]
   GeplanteUrlaubstage;
 
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
@@ -61,6 +58,7 @@ annotate entity ZLL_C_Mitarbeiter with
 
   @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
   LastChangedAt;
+  
   
 
 }

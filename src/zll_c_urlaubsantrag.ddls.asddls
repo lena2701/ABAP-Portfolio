@@ -1,14 +1,16 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'BO Projection View Urlaubsantrag'
 @Metadata.allowExtensions: true
+@Search.searchable: true
 
 define view entity ZLL_C_Urlaubsantrag as projection on ZLL_R_Urlaubsantrag
 {
     key UrlaubsantragUuid,
     AntragstellerUuid,
+    @Search.defaultSearchElement: true
     AntragstellerName,
-    GenehmigenderUuid,
     @Consumption.valueHelpDefinition: [{ entity: { name: 'ZLL_I_MitarbeiterVH', element: 'MitarbeiterUuid' } }]
+    GenehmigenderUuid,
     GenehmigenderName,
     @EndUserText.label: 'Startdatum'
     Startdatum,
@@ -19,6 +21,7 @@ define view entity ZLL_C_Urlaubsantrag as projection on ZLL_R_Urlaubsantrag
     @EndUserText.label: 'Kommentar'
     Kommentar,
     @EndUserText.label: 'Status'
+    @UI.textArrangement: #TEXT_LAST
     Status,
     
   CreatedBy,
