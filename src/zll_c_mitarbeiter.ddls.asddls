@@ -28,10 +28,6 @@ define root view entity ZLL_C_Mitarbeiter
       LastChangedBy,
       LastChangedAt,
       
-      VerfuegbareUrlaubstage,
-      VerbrauchteUrlaubstage,
-      GeplanteUrlaubstage,
-  
 
       _Urlaubsanspruch : redirected to composition child ZLL_C_Urlaubsanspruch,
       _Urlaubsantrag   : redirected to composition child ZLL_C_Urlaubsantrag

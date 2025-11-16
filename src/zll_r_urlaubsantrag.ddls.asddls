@@ -5,7 +5,8 @@ define view entity ZLL_R_Urlaubsantrag
   association        to parent ZLL_R_Mitarbeiter as _Antragsteller     on $projection.AntragstellerUuid = _Antragsteller.MitarbeiterUuid
   association [1..1] to ZLL_R_Mitarbeiter        as _Genehmigender     on $projection.GenehmigenderUuid = _Genehmigender.MitarbeiterUuid
   association [1..1] to ZLL_I_MitarbeiterText    as _GenehmigenderName on $projection.GenehmigenderUuid = _GenehmigenderName.MitarbeiterUuid
- association [1..1] to ZLL_I_MitarbeiterText    as _AntragstellerName on $projection.AntragstellerUuid = _AntragstellerName.MitarbeiterUuid
+  association [1..1] to ZLL_I_MitarbeiterText    as _AntragstellerName on $projection.AntragstellerUuid = _AntragstellerName.MitarbeiterUuid
+  association        to ZLL_I_StatusText         as _statustext        on $projection.UrlaubsantragUuid = _statustext.urlaubsantrag_uuid
 
 {
   key urlaubsantrag_uuid      as UrlaubsantragUuid,
@@ -16,7 +17,7 @@ define view entity ZLL_R_Urlaubsantrag
       urlaubstage             as Urlaubstage,
       kommentar               as Kommentar,
       status                  as Status,
-      
+
       @Semantics.user.createdBy: true
       created_by              as CreatedBy,
       @Semantics.systemDateTime.createdAt: true
@@ -25,18 +26,14 @@ define view entity ZLL_R_Urlaubsantrag
       last_changed_by         as LastChangedBy,
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at         as LastChangedAt,
-      
-        case status when 'G' then 3
-            when 'B' then 2
-            when 'A' then 1
-            else 0
-      end                         as StatusCriticality,
 
 
 
       /* Transient Data */
       _GenehmigenderName.Name as GenehmigenderName,
       _AntragstellerName.Name as AntragstellerName,
+      _statustext.StatusText  as StatusText,
+
 
       /* Associations */
       _Antragsteller,

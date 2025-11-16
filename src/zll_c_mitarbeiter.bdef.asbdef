@@ -4,11 +4,15 @@ strict ( 2 );
 define behavior for ZLL_C_Mitarbeiter
 {
 
-  use update;
-  use create;
-  use delete;
-  use association _Urlaubsantrag { create; }
 
+  use association _Urlaubsantrag { create; }
+  use association _Urlaubsanspruch { }
+
+}
+
+define behavior for ZLL_C_Urlaubsanspruch
+{
+  use association _Mitarbeiter;
 }
 
 define behavior for ZLL_C_Urlaubsantrag

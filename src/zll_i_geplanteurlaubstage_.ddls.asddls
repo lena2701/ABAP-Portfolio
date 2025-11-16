@@ -4,17 +4,16 @@
 
 define view entity ZLL_I_GeplanteUrlaubstage_ as select from zll_urlaubsantr
 {
-          antragsteller_uuid as mitarbeiter,
-sum(
-    case 
-      when   startdatum > $session.system_date
-        
-        then urlaubstage
-      else 0
-    end
-  ) as GeplanteUrlaubstage
+key urlaubsantrag_uuid as UrlaubsantragUuid,
+antragsteller_uuid as AntragstellerUuid,
+substring(startdatum, 1, 4) as RequestYear,
+ urlaubstage               as FilteredDays
+
 }
-where status <> 'A' 
-group by antragsteller_uuid;
+where
+      startdatum > $session.system_date
+  and status     != 'A'
+
+
 
     

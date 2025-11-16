@@ -1,21 +1,14 @@
-
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Verbrauchte Urlaubstage'
-define view entity ZLL_I_VerbrauchteUrlaubstage_ as select from zll_urlaubsantr
+define view entity ZLL_I_VerbrauchteUrlaubstage_
+  as select from zll_urlaubsantr
 {
-        antragsteller_uuid as mitarbeiter,
- sum(
-        case when enddatum > $session.user_date and startdatum < $session.user_date
-          then
-           dats_days_between(startdatum, enddatum) 
-          when enddatum < $session.user_date and startdatum < $session.user_date
-          then
-            urlaubstage
-           else 0
-        end)       
- as VerbrauchteUrlaubstage
+  key urlaubsantrag_uuid          as UrlaubsantragUuid,
+      antragsteller_uuid          as AntragstellerUuid,
+      substring(startdatum, 1, 4) as RequestYear,
+      urlaubstage                 as FilteredDays
 
 }
-where status = 'G'
-group by antragsteller_uuid;
-    
+where
+      enddatum < $session.system_date
+  and status   != 'A'

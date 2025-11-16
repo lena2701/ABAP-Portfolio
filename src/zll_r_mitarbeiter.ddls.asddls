@@ -7,9 +7,7 @@ define root view entity ZLL_R_Mitarbeiter
   association [1..1] to ZLL_I_MitarbeiterText        as _MitarbeiterText on $projection.MitarbeiterUuid = _MitarbeiterText.MitarbeiterUuid
   association [1..*] to ZLL_R_Urlaubsantrag          as _Antragsteller on $projection.MitarbeiterUuid = _Antragsteller.AntragstellerUuid
   association [1..*] to ZLL_R_Urlaubsantrag          as _Genehmigender on $projection.MitarbeiterUuid = _Genehmigender.GenehmigenderUuid
-  association [1..1] to ZLL_I_VerfuegbareUrlaubstage as _verfuegbar    on $projection.MitarbeiterUuid = _verfuegbar.mitarbeiter
-  association [1..1] to ZLL_I_GeplanteUrlaubstage_    as _geplant       on $projection.MitarbeiterUuid = _geplant.mitarbeiter
-  association [1..1] to ZLL_I_VerbrauchteUrlaubstage_ as _verbraucht    on $projection.MitarbeiterUuid = _verbraucht.mitarbeiter
+
 
 {
   @ObjectModel.text.element: ['MitarbeiterName']
@@ -23,11 +21,6 @@ define root view entity ZLL_R_Mitarbeiter
       created_at                         as CreatedAt,
       last_changed_by                    as LastChangedBy,
       last_changed_at                    as LastChangedAt,
-
-      _verbraucht.VerbrauchteUrlaubstage as VerbrauchteUrlaubstage,
-      _geplant.GeplanteUrlaubstage       as GeplanteUrlaubstage,
-      _verfuegbar.VerfuegbareUrlaubstage as VerfuegbareUrlaubstage,
-
 
       _Urlaubsanspruch,
       _Antragsteller,

@@ -13,8 +13,7 @@ annotate entity ZLL_C_Mitarbeiter with
     { position: 10, targetQualifier: 'EmployeeDetails', label: 'Mitarbeiterdetails', type: #FIELDGROUP_REFERENCE },
     { position: 20, targetElement: '_Urlaubsantrag', label: 'Eigene Urlaubsanträge', type: #LINEITEM_REFERENCE },
     { position: 30, targetElement: '_Urlaubsanspruch',     label: 'Urlaubsanspruch', type: #LINEITEM_REFERENCE },
-    { position: 40, targetQualifier: 'VacDays', label: 'Urlaubstagsplanung', type: #FIELDGROUP_REFERENCE},
-    { position: 50, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE }
+    { position: 40, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE }
     
   ]
   
@@ -40,12 +39,7 @@ annotate entity ZLL_C_Mitarbeiter with
   @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails', label: 'Eintrittsdatum' }]
   Eintrittsdatum;
 
-  @UI.fieldGroup: [ { position: 10, qualifier: 'VacDays', label: 'Verfuegbare Urlaubstage'} ]
-  VerfuegbareUrlaubstage;
-  @UI.fieldGroup: [ { position: 20, qualifier: 'VacDays', label: 'Verbrauchte Urlaubstage'} ]
-  VerbrauchteUrlaubstage;
-  @UI.fieldGroup: [ { position: 30, qualifier: 'VacDays', label: 'Geplante Urlaubstage'} ]
-  GeplanteUrlaubstage;
+
 
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
   CreatedBy;

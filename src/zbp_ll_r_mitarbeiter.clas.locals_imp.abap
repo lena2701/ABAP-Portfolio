@@ -1,11 +1,11 @@
 CLASS lhc_mitarbeiter DEFINITION INHERITING FROM cl_abap_behavior_handler.
   PRIVATE SECTION.
 
-    METHODS get_global_authorization FOR GLOBAL AUTHORIZATION
-      IMPORTING REQUEST requested_authorization FOR ZLL_R_Mitarbeiter RESULT result.
+    METHODS get_instance_authorization FOR Instance AUTHORIZATION
+      IMPORTING key REQUEST requested_authorization FOR ZLL_R_Mitarbeiter RESULT result.
 
-    METHODS get_global_authorization_i FOR GLOBAL AUTHORIZATION
-     IMPORTING REQUEST requested_authorization FOR ZLL_R_Urlaubsantrag RESULT result.
+    METHODS get_instance_authorization_i FOR instance AUTHORIZATION
+     IMPORTING key REQUEST requested_authorization FOR ZLL_R_Urlaubsantrag RESULT result.
 
 
     METHODS BestimmeUrlaubstage
@@ -35,10 +35,10 @@ ENDCLASS.
 
 CLASS lhc_mitarbeiter IMPLEMENTATION.
 
-  METHOD get_global_authorization.
+  METHOD get_instance_authorization.
   ENDMETHOD.
 
-  METHOD get_global_authorization_i.
+  METHOD get_instance_authorization_i.
   ENDMETHOD.
 
   METHOD GenehmigeUrlaubsantrag.
@@ -227,34 +227,40 @@ CLASS lhc_mitarbeiter IMPLEMENTATION.
   METHOD BestaetigeUrlaubstage.
     DATA message TYPE REF TO zll_cm_mitarbeiter.
 
-
-    READ ENTITY IN LOCAL MODE ZLL_R_Urlaubsantrag
-         FIELDS ( Startdatum Enddatum AntragstellerName )
-         WITH CORRESPONDING #( keys )
-         RESULT DATA(urlaubsantraege).
-
+    READ ENTITY IN LOCAL MODE zll_r_urlaubsantrag
+    ALL FIELDS
+    WITH CORRESPONDING #( keys )
+    RESULT DATA(urlaubsantraege).
 
     LOOP AT urlaubsantraege INTO DATA(urlaubsantrag).
+
       TRY.
-          DATA(Startdatum) = urlaubsantrag-startdatum.
-          startdatum -= 1.
           DATA(calendar) = cl_fhc_calendar_runtime=>create_factorycalendar_runtime( 'SAP_DE_BW' ).
-          DATA(working_days) = calendar->calc_workingdays_between_dates( iv_start = startdatum
-                                                                         iv_end   = urlaubsantrag-Enddatum ).
+          DATA(urlaubstage) = ( calendar->calc_workingdays_between_dates( iv_start = urlaubsantrag-Startdatum iv_end = urlaubsantrag-Enddatum ) + 1 ) .
         CATCH cx_fhc_runtime.
+          CONTINUE.
       ENDTRY.
 
-      SELECT FROM zll_r_mitarbeiter
-           FIELDS  VerfuegbareUrlaubstage
-           WHERE MitarbeiterUuid = @urlaubsantrag-AntragstellerUuid
-           INTO @DATA(verfuegbareurlaubstage).
-      ENDSELECT.
-      IF VerfuegbareUrlaubstage < working_days.
-        message = NEW zll_cm_mitarbeiter( textid   = zll_cm_mitarbeiter=>nicht_genuegend_urlaubstage
-                                          severity = if_abap_behv_message=>severity-error ).
-        APPEND VALUE #( %tky = urlaubsantrag-%tky
-                        %msg = message ) TO reported-zll_r_urlaubsantrag.
-        APPEND VALUE #( %tky = urlaubsantrag-%tky ) TO failed-zll_r_urlaubsantrag.
+     SELECT SINGLE VerfuegbareUrlaubstage
+      FROM zll_r_urlaubsanspruch
+      WHERE MitarbeiterUuid = @urlaubsantrag-AntragstellerUuid
+        AND Jahr            = @urlaubsantrag-Startdatum+0(4)
+      INTO @DATA(verfuegbareurlaubstage).
+
+
+      IF verfuegbareurlaubstage < urlaubstage.
+
+      message = NEW zll_cm_mitarbeiter(
+                    textid                      = zll_cm_mitarbeiter=>nicht_genuegend_urlaubstage
+                    severity                    = if_abap_behv_message=>severity-error
+                ).
+
+      APPEND VALUE #( %tky = urlaubsantrag-%tky
+                      %msg = message ) TO reported-zll_r_urlaubsantrag.
+
+      APPEND VALUE #( %tky = urlaubsantrag-%tky )
+          TO failed-zll_r_urlaubsantrag.
+
       ENDIF.
     ENDLOOP.
   ENDMETHOD.

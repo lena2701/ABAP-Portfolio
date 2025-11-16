@@ -1,7 +1,6 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'BO Projection View Urlaubsanspruch'
 @Metadata.allowExtensions: true
-@Search.searchable: true
 
 define view entity ZLL_C_Urlaubsanspruch
   as projection on ZLL_R_Urlaubsanspruch
@@ -14,9 +13,12 @@ define view entity ZLL_C_Urlaubsanspruch
       Urlaubstage,
       MitarbeiterName,
       CreatedBy,
-     CreatedAt,
-     LastChangedBy,
-     LastChangedAt,
+      CreatedAt,
+      LastChangedBy,
+      LastChangedAt,
+      GeplanteUrlaubstage,
+      VerbrauchteUrlaubstage,
+      VerfuegbareUrlaubstage,
 
 
       _Mitarbeiter : redirected to parent ZLL_C_Mitarbeiter

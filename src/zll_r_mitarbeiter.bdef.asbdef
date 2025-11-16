@@ -4,13 +4,11 @@ strict ( 2 );
 define behavior for ZLL_R_Mitarbeiter
 persistent table zll_mitarbeiter
 lock master
-authorization master ( global )
+authorization master ( instance )
 //etag master <field_name>
 {
 
-    update;
-    create;
-    delete;
+
 
   field ( readonly, numbering : managed ) MitarbeiterUuid;
 
