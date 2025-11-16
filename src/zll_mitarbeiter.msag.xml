@@ -12,13 +12,43 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZLL_MITARBEITER</ARBGB>
      <MSGNR>001</MSGNR>
-     <TEXT>Enddatum darf nicht vor dem Startdatum liegen</TEXT>
+     <TEXT>Der Urlaubsantrag &amp;1 wurde erfolgreich abgelehnt</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
      <ARBGB>ZLL_MITARBEITER</ARBGB>
      <MSGNR>002</MSGNR>
+     <TEXT>Der Urlaubsantrag &amp;1 wurde schon abgelehnt</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLL_MITARBEITER</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Der Urlaubsantrag &amp;1 wurde erfolgreich genehmigt</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLL_MITARBEITER</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Der Urlaubsantrag &amp;1 wurde schon genehmigt</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLL_MITARBEITER</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Enddatum darf nicht vor dem Startdatum liegen</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLL_MITARBEITER</ARBGB>
+     <MSGNR>006</MSGNR>
      <TEXT>Es sind nicht genügend Urlaubstage verfügbar</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZLL_MITARBEITER</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Das Startdatum darf nicht in der Vergangenheit liegen</TEXT>
     </T100>
    </T100>
   </asx:values>

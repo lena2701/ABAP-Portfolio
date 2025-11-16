@@ -8,12 +8,51 @@ CLASS zll_cm_mitarbeiter DEFINITION PUBLIC
     INTERFACES if_t100_dyn_msg.
 
     " Message Constants
+CONSTANTS:
+      BEGIN OF urlaubsantrag_ablehnen,
+        msgid TYPE symsgid      VALUE 'ZLL_MITARBEITER',
+        msgno TYPE symsgno      VALUE '001',
+        attr1 TYPE scx_attrname VALUE 'Comment',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF urlaubsantrag_ablehnen.
 
     CONSTANTS:
+      BEGIN OF urlaubsantrag_schon_abelehnt,
+        msgid TYPE symsgid      VALUE 'ZLL_MITARBEITER',
+        msgno TYPE symsgno      VALUE '002',
+        attr1 TYPE scx_attrname VALUE 'Comment',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF urlaubsantrag_schon_abelehnt.
+
+    CONSTANTS:
+      BEGIN OF urlaubsantrag_angenommen,
+        msgid TYPE symsgid      VALUE 'ZLL_MITARBEITER',
+        msgno TYPE symsgno      VALUE '003',
+        attr1 TYPE scx_attrname VALUE 'Comment',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF urlaubsantrag_angenommen.
+
+    CONSTANTS:
+      BEGIN OF urlaubsantrag_schon_angenommen,
+        msgid TYPE symsgid      VALUE 'ZLL_MITARBEITER',
+        msgno TYPE symsgno      VALUE '004',
+        attr1 TYPE scx_attrname VALUE 'Comment',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF urlaubsantrag_schon_angenommen.
+
+  CONSTANTS:
       BEGIN OF enddatum_vor_startdatum,
-        msgid TYPE symsgid      VALUE 'ZLL_Mitarbeiter',
-        msgno TYPE symsgno      VALUE '001',
-        attr1 TYPE scx_attrname VALUE 'Kommentar',
+        msgid TYPE symsgid      VALUE 'ZLL_MITARBEITER',
+        msgno TYPE symsgno      VALUE '005',
+        attr1 TYPE scx_attrname VALUE 'Comment',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
@@ -21,17 +60,28 @@ CLASS zll_cm_mitarbeiter DEFINITION PUBLIC
 
     CONSTANTS:
       BEGIN OF nicht_genuegend_urlaubstage,
-        msgid TYPE symsgid      VALUE 'ZLL_Mitarbeiter',
-        msgno TYPE symsgno      VALUE '002',
-        attr1 TYPE scx_attrname VALUE 'Kommentar',
+        msgid TYPE symsgid      VALUE 'ZLL_MITARBEITER',
+        msgno TYPE symsgno      VALUE '006',
+        attr1 TYPE scx_attrname VALUE 'Comment',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
       END OF nicht_genuegend_urlaubstage .
 
+    CONSTANTS:
+      BEGIN OF urlaubsantrag_start_vorbei,
+        msgid TYPE symsgid      VALUE 'ZLL_MITARBEITER',
+        msgno TYPE symsgno      VALUE '007',
+        attr1 TYPE scx_attrname VALUE 'Comment',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF urlaubsantrag_start_vorbei.
+
+
 
     " Attributs
-    DATA Kommentar TYPE STRING.
+    DATA Comment TYPE zll_kommentar.
 
     " Constructor
     METHODS constructor
@@ -56,6 +106,6 @@ CLASS ZLL_CM_MITARBEITER IMPLEMENTATION.
 
     if_t100_message~t100key = textid.
     if_abap_behv_message~m_severity = severity.
-    me->kommentar = kommentar.
+    me->Comment = Comment.
   ENDMETHOD.
 ENDCLASS.

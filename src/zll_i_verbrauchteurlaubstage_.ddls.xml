@@ -6,7 +6,7 @@
     <DDLNAME>ZLL_I_VERBRAUCHTEURLAUBSTAGE_</DDLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DDTEXT>Interface View Verbrauchte Urlaubstage</DDTEXT>
-    <SOURCE_TYPE>V</SOURCE_TYPE>
+    <SOURCE_TYPE>W</SOURCE_TYPE>
    </DDLS>
   </asx:values>
  </asx:abap>

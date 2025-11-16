@@ -42,9 +42,115 @@ CLASS lhc_mitarbeiter IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD GenehmigeUrlaubsantrag.
+   DATA message TYPE REF TO zll_cm_mitarbeiter.
+
+    " Read Inquiry
+    READ ENTITY IN LOCAL MODE zll_r_urlaubsantrag
+         FIELDS ( Status Kommentar )
+         WITH CORRESPONDING #( keys )
+         RESULT DATA(urlaubsantraege).
+
+    " Process Inquiry
+    LOOP AT urlaubsantraege REFERENCE INTO DATA(urlaubsantrag).
+
+      " Validate State and Create Error Message
+      IF urlaubsantrag->Status = 'A'.
+        message = NEW zll_cm_mitarbeiter( textid   = zll_cm_mitarbeiter=>urlaubsantrag_schon_abelehnt
+                                          severity = if_abap_behv_message=>severity-error
+                                          comment  = urlaubsantrag->Kommentar ).
+        APPEND VALUE #( %tky = urlaubsantrag->%tky
+                        %msg = message ) TO reported-zll_r_urlaubsantrag.
+        APPEND VALUE #( %tky = urlaubsantrag->%tky ) TO failed-zll_r_urlaubsantrag.
+        DELETE urlaubsantraege INDEX sy-tabix.
+        CONTINUE.
+      ENDIF.
+
+      IF urlaubsantrag->Status = 'G'.
+        message = NEW zll_cm_mitarbeiter( textid   = zll_cm_mitarbeiter=>urlaubsantrag_schon_angenommen
+                                          severity = if_abap_behv_message=>severity-error
+                                          comment  = urlaubsantrag->Kommentar ).
+        APPEND VALUE #( %tky = urlaubsantrag->%tky
+                        %msg = message ) TO reported-zll_r_urlaubsantrag.
+        APPEND VALUE #( %tky = urlaubsantrag->%tky ) TO failed-zll_r_urlaubsantrag.
+        DELETE urlaubsantraege INDEX sy-tabix.
+        CONTINUE.
+      ENDIF.
+
+      " Set State to G und Create Success Message
+      urlaubsantrag->Status = 'G'.
+      message = NEW zll_cm_mitarbeiter(
+           textid = zll_cm_mitarbeiter=>urlaubsantrag_angenommen
+          severity = if_abap_behv_message=>severity-success
+         comment = urlaubsantrag->Kommentar
+    ).
+      APPEND VALUE #( %tky = urlaubsantrag->%tky %msg = message ) TO reported-zll_r_urlaubsantrag.
+    ENDLOOP.
+
+    " Modify Inquiry
+    MODIFY ENTITY IN LOCAL MODE zll_r_urlaubsantrag
+           UPDATE FIELDS ( Status )
+           WITH VALUE #( FOR lr IN urlaubsantraege
+                         ( %tky = lr-%tky Status = lr-Status ) ).
+
+    " Set Result
+    result = VALUE #( FOR lr IN urlaubsantraege
+                      ( %tky = lr-%tky %param = lr ) ).
   ENDMETHOD.
 
   METHOD AblehnenUrlaubsantrag.
+   DATA message TYPE REF TO zll_cm_mitarbeiter.
+
+    " Read Inquiry
+    READ ENTITY IN LOCAL MODE zll_r_urlaubsantrag
+        FIELDS ( Status Kommentar )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(urlaubsantraege).
+
+    " Process Inquiry
+    LOOP AT urlaubsantraege REFERENCE INTO DATA(urlaubsantrag).
+
+      " Validate State and Create Error Message
+      IF urlaubsantrag->Status = 'A'.
+        message = NEW zll_cm_mitarbeiter(
+            textid = zll_cm_mitarbeiter=>urlaubsantrag_schon_abelehnt
+             severity = if_abap_behv_message=>severity-error
+             comment  = urlaubsantrag->Kommentar
+         ).
+        APPEND VALUE #( %tky = urlaubsantrag->%tky %msg = message ) TO reported-zll_r_urlaubsantrag.
+        APPEND VALUE #( %tky = urlaubsantrag->%tky ) TO failed-zll_r_urlaubsantrag.
+        DELETE urlaubsantraege INDEX sy-tabix.
+        CONTINUE.
+      ENDIF.
+
+      IF urlaubsantrag->Status = 'G'.
+        message = NEW zll_cm_mitarbeiter(
+            textid = zll_cm_mitarbeiter=>urlaubsantrag_schon_angenommen
+            severity = if_abap_behv_message=>severity-error
+            comment  = urlaubsantrag->Kommentar
+        ).
+        APPEND VALUE #( %tky = urlaubsantrag->%tky %msg = message ) TO reported-zll_r_urlaubsantrag.
+        APPEND VALUE #( %tky = urlaubsantrag->%tky ) TO failed-zll_r_urlaubsantrag.
+        DELETE urlaubsantraege INDEX sy-tabix.
+        CONTINUE.
+      ENDIF.
+
+      " Set State to A und Create Success Message
+      urlaubsantrag->Status = 'A'.
+      message = NEW zll_cm_mitarbeiter(
+         textid = zll_cm_mitarbeiter=>urlaubsantrag_ablehnen
+         severity = if_abap_behv_message=>severity-success
+         comment = urlaubsantrag->Kommentar
+      ).
+      APPEND VALUE #( %tky = urlaubsantrag->%tky %msg = message ) TO reported-zll_r_urlaubsantrag.
+    ENDLOOP.
+
+    " Modify Inquiry
+    MODIFY ENTITY IN LOCAL MODE zll_r_urlaubsantrag
+        UPDATE FIELDS ( Status )
+        WITH VALUE #( FOR lr IN urlaubsantraege ( %tky = lr-%tky Status = lr-Status ) ).
+
+    " Set Result
+    result = VALUE #( FOR lr IN urlaubsantraege ( %tky = lr-%tky %param = lr ) ).
   ENDMETHOD.
 
 
@@ -105,11 +211,17 @@ CLASS lhc_mitarbeiter IMPLEMENTATION.
         APPEND VALUE #( %tky = urlaubsantrag-%tky
                         %msg = message ) TO reported-zll_r_urlaubsantrag.
         APPEND VALUE #( %tky = urlaubsantrag-%tky ) TO failed-zll_r_urlaubsantrag.
+    ENDIF.
+
+  IF urlaubsantrag-Startdatum < lv_current_date.
+        message = NEW zll_cm_mitarbeiter( textid = zll_cm_mitarbeiter=>urlaubsantrag_start_vorbei
+        severity = if_abap_behv_message=>severity-error ).
+        APPEND VALUE #( %tky = urlaubsantrag-%tky
+                        %msg = message ) TO reported-zll_r_urlaubsantrag.
+        APPEND VALUE #( %tky = urlaubsantrag-%tky ) TO failed-zll_r_urlaubsantrag.
       ENDIF.
     ENDLOOP.
-
   ENDMETHOD.
-
 
 
   METHOD BestaetigeUrlaubstage.

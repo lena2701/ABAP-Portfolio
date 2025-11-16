@@ -25,6 +25,12 @@ define view entity ZLL_R_Urlaubsantrag
       last_changed_by         as LastChangedBy,
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at         as LastChangedAt,
+      
+        case status when 'G' then 3
+            when 'B' then 2
+            when 'A' then 1
+            else 0
+      end                         as StatusCriticality,
 
 
 

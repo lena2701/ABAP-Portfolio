@@ -74,6 +74,18 @@ CLASS ZLL_CL_MITARBEITER_GENERATOR IMPLEMENTATION.
     mitarbeiter-last_changed_by = 'GENERATOR'.
     APPEND mitarbeiter TO mitarbeitende.
 
+    mitarbeiter-client = sy-mandt.
+    mitarbeiter-mitarbeiternummer = '000004'.
+    mitarbeiter-mitarbeiter_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    mitarbeiter-vorname = 'Lena'.
+    mitarbeiter-nachname = 'Strohmenger'.
+    mitarbeiter-eintrittsdatum = '20230501'.
+    GET TIME STAMP FIELD mitarbeiter-created_at.
+    GET TIME STAMP FIELD mitarbeiter-last_changed_at.
+    mitarbeiter-created_by = 'GENERATOR'.
+    mitarbeiter-last_changed_by = 'GENERATOR'.
+    APPEND mitarbeiter TO mitarbeitende.
+
 
     INSERT zll_mitarbeiter FROM TABLE @mitarbeitende.
     out->write( |Eingefügte Mitarbeiter: { sy-dbcnt }| ).
@@ -81,7 +93,7 @@ CLASS ZLL_CL_MITARBEITER_GENERATOR IMPLEMENTATION.
     DATA(lv_emp_hans)  = mitarbeitende[ mitarbeiternummer = '000001' ]-mitarbeiter_uuid.
     DATA(lv_emp_lisa)  = mitarbeitende[ mitarbeiternummer = '000002' ]-mitarbeiter_uuid.
     DATA(lv_emp_petra) = mitarbeitende[ mitarbeiternummer = '000003' ]-mitarbeiter_uuid.
-
+    DATA(lv_emp_lena) = mitarbeitende[ mitarbeiternummer = '000004' ]-mitarbeiter_uuid.
 
 
     " Create Vacation Inquiries
@@ -169,6 +181,21 @@ CLASS ZLL_CL_MITARBEITER_GENERATOR IMPLEMENTATION.
     urlaubsantrag-last_changed_by = 'GENERATOR'.
     APPEND urlaubsantrag TO urlaubsantraege.
 
+    urlaubsantrag-urlaubsantrag_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    urlaubsantrag-antragsteller_uuid = lv_emp_lena.
+    urlaubsantrag-genehmigender_uuid = lv_emp_hans.
+    urlaubsantrag-startdatum = '20251201'.
+    urlaubsantrag-enddatum = '20251205'.
+    urlaubsantrag-urlaubstage = 4.
+    urlaubsantrag-kommentar = 'Urlaub Test'.
+    urlaubsantrag-status = 'G'.
+    GET TIME STAMP FIELD urlaubsantrag-created_at.
+    GET TIME STAMP FIELD urlaubsantrag-last_changed_at.
+    urlaubsantrag-created_by = 'GENERATOR'.
+    urlaubsantrag-last_changed_by = 'GENERATOR'.
+    APPEND urlaubsantrag TO urlaubsantraege.
+
+
     INSERT zll_urlaubsantr FROM TABLE @urlaubsantraege.
     out->write( |Eingefügte Urlaubsantraege: { sy-dbcnt }| ).
 
@@ -209,6 +236,16 @@ CLASS ZLL_CL_MITARBEITER_GENERATOR IMPLEMENTATION.
     urlaubsanspruch-mitarbeiter_uuid = lv_emp_petra.
     urlaubsanspruch-urlaubstage = 7.
     urlaubsanspruch-jahr = 2023.
+    GET TIME STAMP FIELD urlaubsanspruch-created_at.
+    GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
+    urlaubsanspruch-created_by = 'GENERATOR'.
+    urlaubsanspruch-last_changed_by = 'GENERATOR'.
+    APPEND urlaubsanspruch TO urlaubsansprueche.
+
+    urlaubsanspruch-urlaubsanspruch_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    urlaubsanspruch-mitarbeiter_uuid = lv_emp_lena.
+    urlaubsanspruch-urlaubstage = 30.
+    urlaubsanspruch-jahr = 2025.
     GET TIME STAMP FIELD urlaubsanspruch-created_at.
     GET TIME STAMP FIELD urlaubsanspruch-last_changed_at.
     urlaubsanspruch-created_by = 'GENERATOR'.

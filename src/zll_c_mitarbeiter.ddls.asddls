@@ -27,6 +27,7 @@ define root view entity ZLL_C_Mitarbeiter
       CreatedAt,
       LastChangedBy,
       LastChangedAt,
+      
       VerfuegbareUrlaubstage,
       VerbrauchteUrlaubstage,
       GeplanteUrlaubstage,

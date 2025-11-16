@@ -3,8 +3,8 @@
 {
   typeNamePlural: 'Mitarbeitende',
   typeName: 'Mitarbeiter',
-  title.value: 'MitarbeiterUuid',
-  description.value: 'Nachname'
+  title.value: 'Vorname',
+  description.value: 'Eintrittsdatum'
 }
 
 annotate entity ZLL_C_Mitarbeiter with
@@ -40,11 +40,11 @@ annotate entity ZLL_C_Mitarbeiter with
   @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails', label: 'Eintrittsdatum' }]
   Eintrittsdatum;
 
-  @UI.fieldGroup: [ { position: 10, qualifier: 'VacDays', label: 'Verfügbare Urlaubstage'} ]
+  @UI.fieldGroup: [ { position: 10, qualifier: 'VacDays', label: 'Verfuegbare Urlaubstage'} ]
   VerfuegbareUrlaubstage;
-  @UI.fieldGroup: [ { position: 20, qualifier: 'VacDays', label: 'Genutzte Urlaubstage'} ]
+  @UI.fieldGroup: [ { position: 20, qualifier: 'VacDays', label: 'Verbrauchte Urlaubstage'} ]
   VerbrauchteUrlaubstage;
-  @UI.fieldGroup: [ { position: 30, qualifier: 'VacDays', label: 'Verplante Urlaubstage'} ]
+  @UI.fieldGroup: [ { position: 30, qualifier: 'VacDays', label: 'Geplante Urlaubstage'} ]
   GeplanteUrlaubstage;
 
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]

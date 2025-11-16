@@ -1,11 +1,10 @@
 
-@AbapCatalog.sqlViewName: 'ZLL_I_VERBRAUCHT'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Verbrauchte Urlaubstage'
-define view ZLL_I_VerbrauchteUrlaubstage_ as select from zll_urlaubsantr
+define view entity ZLL_I_VerbrauchteUrlaubstage_ as select from zll_urlaubsantr
 {
         antragsteller_uuid as mitarbeiter,
-     sum(
+ sum(
         case when enddatum > $session.user_date and startdatum < $session.user_date
           then
            dats_days_between(startdatum, enddatum) 
@@ -15,8 +14,8 @@ define view ZLL_I_VerbrauchteUrlaubstage_ as select from zll_urlaubsantr
            else 0
         end)       
  as VerbrauchteUrlaubstage
+
 }
 where status = 'G'
-group by
-antragsteller_uuid;
+group by antragsteller_uuid;
     

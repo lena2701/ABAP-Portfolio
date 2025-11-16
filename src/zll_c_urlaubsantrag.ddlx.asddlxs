@@ -56,7 +56,7 @@ _Antragsteller;
   @UI.fieldGroup: [{ position: 70, qualifier: 'AntragsDetails', label: 'Status' }]
   Status;
   
-  @UI.lineItem: [ { position: 80, label: 'Inquiry Uuid' } ]
+  @UI.lineItem: [ { position: 80, label: 'Urlaubsantrag Uuid' } ]
   @UI.fieldGroup: [ { position: 80, qualifier: 'AntragsDetails', label: 'Urlaubsantrag Uuid' } ]
   UrlaubsantragUuid;
 
