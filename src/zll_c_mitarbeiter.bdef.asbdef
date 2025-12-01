@@ -20,10 +20,6 @@ define behavior for ZLL_C_Urlaubsantrag
   use update;
   use delete;
 
-
-  use action GenehmigeUrlaubsantrag;
-  use action AblehnenUrlaubsantrag;
-
   use association _Antragsteller;
 
 }

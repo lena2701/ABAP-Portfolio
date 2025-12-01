@@ -7,6 +7,7 @@ define root view entity ZLL_R_Mitarbeiter
   association [1..1] to ZLL_I_MitarbeiterText        as _MitarbeiterText on $projection.MitarbeiterUuid = _MitarbeiterText.MitarbeiterUuid
   association [1..*] to ZLL_R_Urlaubsantrag          as _Antragsteller on $projection.MitarbeiterUuid = _Antragsteller.AntragstellerUuid
   association [1..*] to ZLL_R_Urlaubsantrag          as _Genehmigender on $projection.MitarbeiterUuid = _Genehmigender.GenehmigenderUuid
+  
 
 
 {

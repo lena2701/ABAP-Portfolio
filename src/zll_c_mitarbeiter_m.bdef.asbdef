@@ -1,0 +1,19 @@
+projection;
+strict ( 2 );
+
+define behavior for ZLL_C_Mitarbeiter_M //alias <alias_name>
+{
+
+  use association _Urlaubsantrag;
+
+}
+
+define behavior for ZLL_C_URLAUBSANTRAEGE //alias <alias_name>
+{
+  use action GenehmigeUrlaubsantrag;
+  use action AblehnenUrlaubsantrag;
+
+  use association _Antragsteller;
+  use association _Genehmigender;
+
+}
