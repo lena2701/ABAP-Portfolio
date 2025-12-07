@@ -3,54 +3,56 @@
 {
   typeNamePlural: 'Mitarbeitende',
   typeName: 'Mitarbeiter',
-  title.value: 'Nachname',
-  description.value: 'Vorname'
+  title.value: 'Vorname',
+  description.value: 'Eintrittsdatum'
 }
 
-annotate view ZLL_C_Mitarbeiter with
+annotate entity ZLL_C_Mitarbeiter with
 {
-
-
-  @UI.facet:
-  [
-    { position: 10, targetQualifier: 'MitarbeiterDetails', label: 'Mitarbeiter Details', type: #FIELDGROUP_REFERENCE },
-    { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE },
-    { position: 30, targetElement: '_Urlaubsanspruch', label: 'Urlaubsansprüche', type: #LINEITEM_REFERENCE },
-    { position: 40, targetElement: '_Urlaubsantrag', label: 'Urlaubsanträge', type: #LINEITEM_REFERENCE }
+  @UI.facet: [
+    { position: 10, targetQualifier: 'EmployeeDetails', label: 'Mitarbeiterdetails', type: #FIELDGROUP_REFERENCE },
+    { position: 20, targetElement: '_Urlaubsantrag', label: 'Eigene Urlaubsanträge', type: #LINEITEM_REFERENCE },
+    { position: 30, targetElement: '_Urlaubsanspruch',     label: 'Urlaubsanspruch', type: #LINEITEM_REFERENCE },
+    { position: 40, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE }
+    
   ]
+  
+  @UI.lineItem: [ { position: 10 } ]
+  @UI.selectionField: [ { position: 10 } ]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'EmployeeDetails', label: 'Mitarbeiternummer' }]
+  Mitarbeiternummer;
+
+  
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'EmployeeDetails', label: 'Vorname' }]
+  Vorname;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'EmployeeDetails', label: 'Nachname' }]
+  Nachname;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails', label: 'Eintrittsdatum' }]
+  Eintrittsdatum;
+
 
 
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
-  MitarbeiterUuid;
-
-  @UI.lineItem: [{ position: 10 }]
-  @UI.selectionField: [{ position: 10 }]
-  @UI.fieldGroup: [{ position: 10, qualifier: 'TravelDetails' }]
-  Mitarbeiternummer;
-
-  @UI.lineItem: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 20, qualifier: 'TravelDetails' }]
-  Vorname;
-
-  @UI.lineItem: [{ position: 30 }]
-  @UI.fieldGroup: [{ position: 30, qualifier: 'TravelDetails' }]
-  Nachname;
-
-  @UI.lineItem: [{ position: 40 }]
-  @UI.selectionField: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 40, qualifier: 'TravelDetails' }]
-  Eintrittsdatum;
-
-  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
   CreatedBy;
 
-  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
   CreatedAt;
 
-  @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
   LastChangedBy;
 
-  @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
   LastChangedAt;
+  
+  
 
 }
