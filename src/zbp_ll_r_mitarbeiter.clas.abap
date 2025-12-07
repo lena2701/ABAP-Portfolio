@@ -1,6 +1,10 @@
-CLASS zbp_ll_r_mitarbeiter DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF ZLL_R_Mitarbeiter.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+class ZBP_LL_R_MITARBEITER definition
+  public
+  create private .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 

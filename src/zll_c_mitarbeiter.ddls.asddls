@@ -3,11 +3,10 @@
 @Search.searchable: true
 @Metadata.allowExtensions: true
 define root view entity ZLL_C_Mitarbeiter
-  provider contract transactional_query
+provider contract transactional_query
   as projection on ZLL_R_Mitarbeiter
 {
   key MitarbeiterUuid,
-      @Search.defaultSearchElement: true
       @EndUserText.label: 'Mitarbeiternummer'
       Mitarbeiternummer,
       @Search.defaultSearchElement: true
@@ -18,18 +17,16 @@ define root view entity ZLL_C_Mitarbeiter
       @Search.fuzzinessThreshold: 0.7
       @EndUserText.label: 'Nachname'
       Nachname,
-      @Search.defaultSearchElement: true
       @EndUserText.label: 'Eintrittsdatum'
       Eintrittsdatum,
 
-
+       
       CreatedBy,
       CreatedAt,
       LastChangedBy,
       LastChangedAt,
       
-
-      _Urlaubsanspruch : redirected to composition child ZLL_C_Urlaubsanspruch,
-      _Urlaubsantrag   : redirected to composition child ZLL_C_Urlaubsantrag
-
+  _Urlaubsanspruch : redirected to composition child ZLL_C_Urlaubsanspruch,
+  _Urlaubsantrag : redirected to composition child ZLL_C_Urlaubsantrag 
+     
 }
