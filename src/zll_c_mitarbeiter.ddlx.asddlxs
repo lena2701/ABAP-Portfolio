@@ -10,33 +10,32 @@
 annotate entity ZLL_C_Mitarbeiter with
 {
   @UI.facet: [
-    { position: 10, targetQualifier: 'EmployeeDetails', label: 'Mitarbeiterdetails', type: #FIELDGROUP_REFERENCE },
+    { position: 10, targetQualifier: 'MitarbeiterDetails', label: 'Mitarbeiterdetails', type: #FIELDGROUP_REFERENCE },
     { position: 20, targetElement: '_Urlaubsantrag', label: 'Eigene Urlaubsanträge', type: #LINEITEM_REFERENCE },
     { position: 30, targetElement: '_Urlaubsanspruch',     label: 'Urlaubsanspruch', type: #LINEITEM_REFERENCE },
     { position: 40, targetQualifier: 'AdminData', label: 'Administrative Daten', type: #FIELDGROUP_REFERENCE }
     
-  ]
+  ] 
+  
   
   @UI.lineItem: [ { position: 10 } ]
   @UI.selectionField: [ { position: 10 } ]
-  @UI.fieldGroup: [{ position: 10, qualifier: 'EmployeeDetails', label: 'Mitarbeiternummer' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'MitarbeiterDetails', label: 'Mitarbeiternummer' }]
   Mitarbeiternummer;
 
   
 
   @UI.lineItem: [{ position: 30 }]
-  @UI.selectionField: [{ position: 20 }]
-  @UI.fieldGroup: [{ position: 20, qualifier: 'EmployeeDetails', label: 'Vorname' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'MitarbeiterDetails', label: 'Vorname' }]
   Vorname;
 
   @UI.lineItem: [{ position: 40 }]
-  @UI.selectionField: [{ position: 30 }]
-  @UI.fieldGroup: [{ position: 30, qualifier: 'EmployeeDetails', label: 'Nachname' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'MitarbeiterDetails', label: 'Nachname' }]
   Nachname;
 
   @UI.lineItem: [{ position: 50 }]
   @UI.selectionField: [{ position: 40 }]
-  @UI.fieldGroup: [{ position: 40, qualifier: 'EmployeeDetails', label: 'Eintrittsdatum' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'MitarbeiterDetails', label: 'Eintrittsdatum' }]
   Eintrittsdatum;
 
 

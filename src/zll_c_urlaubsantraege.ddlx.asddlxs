@@ -40,7 +40,6 @@ annotate entity ZLL_C_URLAUBSANTRAEGE with
 
 
   @UI.lineItem: [{ position: 80, label: 'Kommentar' }]
-  @UI.selectionField: [ {position: 30} ]
   @UI.fieldGroup: [{ position: 60, qualifier: 'AntragsDetails', label: 'Kommentar' }]
   Kommentar;
 

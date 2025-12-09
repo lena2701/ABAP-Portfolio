@@ -14,10 +14,10 @@ define view entity ZLL_C_URLAUBSANTRAEGE
       @EndUserText.label: 'Enddatum'
       Enddatum,
       @EndUserText.label: 'Kommentar'
-      @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.7
       Kommentar,
       @EndUserText.label: 'Status'
+      @Search.defaultSearchElement: true
       Status,
       StatusText,
       Urlaubstage,

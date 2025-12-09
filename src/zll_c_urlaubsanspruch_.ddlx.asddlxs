@@ -11,46 +11,45 @@ annotate entity ZLL_C_Urlaubsanspruch with
 {
     @UI.facet:
   [
-      { position: 10, targetQualifier: 'VacationEntitlements', label: 'Vacation Entitlements', type: #FIELDGROUP_REFERENCE },
+      { position: 10, targetQualifier: 'Urlaubsansprueche', label: 'Urlaubsansprueche', type: #FIELDGROUP_REFERENCE },
       { position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
   ]
 
   @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]  
   UrlaubsanspruchUuid;
   
-  //EmployeeUuid;
   
-  @UI.fieldGroup: [{ position: 10, qualifier: 'VacationEntitlements' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'Urlaubsansprueche' }]
   @UI.lineItem: [{ position: 10 }] 
   Jahr;
   
-  @UI.fieldGroup: [{ position: 20, qualifier: 'VacationEntitlements' }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'Urlaubsansprueche' }]
   @UI.lineItem: [{ position: 20 }] 
   Urlaubstage;
   
-  @UI.fieldGroup: [{ position: 30, qualifier: 'VacationEntitlements', label: 'VerfuegbareUrlaubstage' }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'Urlaubsansprueche', label: 'VerfuegbareUrlaubstage' }]
   @UI.lineItem: [{ position: 30, label: 'VerfuegbareUrlaubstage' }]
-  verfuegbareurlaubstage;
+  VerfuegbareUrlaubstage;
  
-  @UI.fieldGroup: [{ position: 40, qualifier: 'VacationEntitlements', label: 'GeplanteUrlaubstage' }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'Urlaubsansprueche', label: 'GeplanteUrlaubstage' }]
   @UI.lineItem: [{ position: 40, label: 'GeplanteUrlaubstage' }] 
-  geplanteurlaubstage;
+  GeplanteUrlaubstage;
 
-  @UI.fieldGroup: [{ position: 50, qualifier: 'VacationEntitlements', label: 'Verbrauchte Urlaubstage' }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'Urlaubsansprueche', label: 'Verbrauchte Urlaubstage' }]
   @UI.lineItem: [{ position: 50, label: 'Verbrauchte Urlaubstage' }] 
-  verbrauchteurlaubstage;
+  VerbrauchteUrlaubstage;
   
   @UI.fieldGroup: [{ position: 20, qualifier: 'AdminData' }]
-  createdby;
+  CreatedBy;
   
   @UI.fieldGroup: [{ position: 30, qualifier: 'AdminData' }]
-  createdat;
+  CreatedAt;
   
   @UI.fieldGroup: [{ position: 40, qualifier: 'AdminData' }]
-  lastchangedby;
+  LastChangedBy;
   
   @UI.fieldGroup: [{ position: 50, qualifier: 'AdminData' }]
-  lastchangedat;
+  LastChangedAt;
   
 
   
